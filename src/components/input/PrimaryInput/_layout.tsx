@@ -3,13 +3,14 @@ import { Animated, StyleSheet, Text, TextInput, View } from "react-native";
 
 type PrimaryInputProps = {
     label: string;
+    onChangeText: any,
+    value: string;
 }
 
 
-const PrimaryInput: React.FC<PrimaryInputProps> = ({ label }) => {
-    const [text, setText] = useState('');
+const PrimaryInput: React.FC<PrimaryInputProps> = ({ label, onChangeText, value }) => {
     const floatingLabelAnimation = useRef(
-        new Animated.Value(text ? 1 : 0),
+        new Animated.Value(value ? 1 : 0),
     ).current;
 
     const handleFocus = () => {
@@ -23,7 +24,7 @@ const PrimaryInput: React.FC<PrimaryInputProps> = ({ label }) => {
 
     const handleBlur = () => {
         // If the input is empty, animate the floating label back to its original position
-        if (!text) {
+        if (!value) {
             Animated.timing(floatingLabelAnimation, {
                 toValue: 0,
                 duration: 150,
@@ -53,8 +54,8 @@ const PrimaryInput: React.FC<PrimaryInputProps> = ({ label }) => {
                 cursorColor={'#6F6085'}
                 selectionHandleColor={''}
                 style={styles.inputText}
-                value={text}
-                onChangeText={val => setText(val)}
+                value={value}
+                onChangeText={val => onChangeText(val)}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
             />
