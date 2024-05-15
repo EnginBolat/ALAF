@@ -7,8 +7,6 @@ type AdressContainerProps = {
     adressTitle: string;
     adressDetails: string;
     currentAdress: string;
-    leadingIcon: string;
-    trailingIcon: string;
 }
 
 
@@ -16,8 +14,6 @@ const AdressContainer: React.FC<AdressContainerProps> = ({
     adressTitle,
     adressDetails,
     currentAdress,
-    leadingIcon,
-    trailingIcon
 }) => {
     return <View style={styles.container}>
         <View style={styles.innerContainer}>
