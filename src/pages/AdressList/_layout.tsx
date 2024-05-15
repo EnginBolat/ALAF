@@ -1,6 +1,6 @@
 import React from "react";
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
-import { AdressContainer, Divider, PrimaryButton } from "../../components";
+import { AdressContainer, BottomButtonLayout, Divider } from "../../components";
 
 
 const data = [
@@ -71,15 +71,10 @@ export default function AdressList() {
 
 
                     {/* Button Area */}
-                    <View>
-                        <Divider />
-                        <View style={[styles.pagePadding, styles.buttonStyle]}>
-                            <PrimaryButton
-                                title="Yeni Kayıt Ekle"
-                                onPress={() => { }}
-                            />
-                        </View>
-                    </View>
+                    <BottomButtonLayout
+                        title="Yeni Kayıt Ekle"
+                        onPress={() => { }}
+                    />
                 </View>
             </SafeAreaView>
         </ScrollView>
