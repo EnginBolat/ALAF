@@ -26,17 +26,14 @@ const data = [
 
 export default function AdressList() {
     return (
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollViewContentContainer}>
-            <SafeAreaView style={styles.container}>
-                <View style={styles.innerContainer}>
+        <SafeAreaView style={styles.container}>
+            <View style={styles.innerContainer}>
+
+                <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollViewContentContainer}>
                     <View style={styles.pagePadding}>
                         {/* Title */}
                         <Text style={styles.titleStyle}>Kayıtlı Adresler</Text>
                         <View style={{ height: 10 }} />
-
-
-
-
                         {/* Information Container */}
                         <View style={styles.adressListContainer}>
                             {data.map((e) => {
@@ -66,21 +63,16 @@ export default function AdressList() {
                             })}
                         </View>
                     </View>
-
-
-
-
-                    {/* Button Area */}
-                    <BottomButtonLayout
-                        title="Yeni Kayıt Ekle"
-                        onPress={() => { }}
-                    />
-                </View>
-            </SafeAreaView>
-        </ScrollView>
+                </ScrollView>
+                {/* Button Area */}
+                <BottomButtonLayout
+                    title="Yeni Kayıt Ekle"
+                    onPress={() => { }}
+                />
+            </View>
+        </SafeAreaView>
     )
 }
-
 
 
 const styles = StyleSheet.create({
