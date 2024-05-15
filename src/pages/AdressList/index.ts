@@ -1,1 +1,1 @@
-export { default } from './_layout';
+export { default as AdressList } from './_layout';
