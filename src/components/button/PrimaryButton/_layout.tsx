@@ -17,8 +17,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({ onPress, title }) => {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#019693',
-        paddingHorizontal: 18,
-        paddingVertical: 16,
+        paddingVertical: 18,
         borderRadius: 6,
         alignItems: 'center',
     },
