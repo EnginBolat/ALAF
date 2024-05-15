@@ -8,24 +8,18 @@ const data = [
         id: 1,
         adressTitle: "İkamet Adresim",
         adressDetails: "Adres detayı, lor",
-        leadingIcon: "",
-        trailingIcon: "",
         currentAdress: "Üsküdar/İstanbul",
     },
     {
         id: 2,
         adressTitle: "İkamet Adresim",
         adressDetails: "Adres detayı, lor",
-        leadingIcon: "",
-        trailingIcon: "",
         currentAdress: "Üsküdar/İstanbul",
     },
     {
         id: 3,
         adressTitle: "İkamet Adresim",
         adressDetails: "Adres detayı, lor",
-        leadingIcon: "",
-        trailingIcon: "",
         currentAdress: "Üsküdar/İstanbul",
     },
 ]
@@ -63,8 +57,6 @@ export default function AdressList() {
                                                 key={e.id}
                                                 adressTitle={e.adressTitle}
                                                 adressDetails={e.adressDetails}
-                                                leadingIcon={e.leadingIcon}
-                                                trailingIcon={e.trailingIcon}
                                                 currentAdress={e.currentAdress}
                                             />
                                             <View style={{ paddingVertical: 16 }}>
@@ -75,8 +67,6 @@ export default function AdressList() {
                                             key={e.id}
                                             adressTitle={e.adressTitle}
                                             adressDetails={e.adressDetails}
-                                            leadingIcon={e.leadingIcon}
-                                            trailingIcon={e.trailingIcon}
                                             currentAdress={e.currentAdress}
                                         />
                                 )
