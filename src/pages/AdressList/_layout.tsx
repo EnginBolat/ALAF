@@ -26,7 +26,7 @@ const data = [
 
 export default function AdressList() {
     return (
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flex: 1, justifyContent: 'space-between' }}>
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollViewContentContainer}>
             <SafeAreaView style={styles.container}>
                 <View style={styles.innerContainer}>
                     <View style={styles.pagePadding}>
@@ -38,14 +38,7 @@ export default function AdressList() {
 
 
                         {/* Information Container */}
-                        <View style={{
-                            paddingVertical: 20,
-                            paddingHorizontal: 16,
-                            borderWidth: 1,
-                            borderRadius: 8,
-                            borderStyle: 'solid',
-                            borderColor: '#EEF0F4',
-                        }}>
+                        <View style={styles.adressListContainer}>
                             {data.map((e) => {
                                 return (
                                     e.id == 2
@@ -96,6 +89,10 @@ export default function AdressList() {
 
 
 const styles = StyleSheet.create({
+    scrollViewContentContainer: {
+        flex: 1,
+        justifyContent: 'space-between'
+    },
     container: {
         flex: 1,
     },
@@ -116,5 +113,13 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         color: '#3D2852',
         paddingTop: 30,
+    },
+    adressListContainer: {
+        paddingVertical: 20,
+        paddingHorizontal: 16,
+        borderWidth: 1,
+        borderRadius: 8,
+        borderStyle: 'solid',
+        borderColor: '#EEF0F4',
     }
 })
