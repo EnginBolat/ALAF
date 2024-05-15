@@ -22,7 +22,7 @@ export default function AddAdress() {
             validationSchema={formScheme}
             onSubmit={values => console.log(values)}
         >
-            {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
+            {({ handleChange, handleSubmit, values, }) => (
                 <View style={{ flex: 1, }}>
                     <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'space-between' }}>
                         <View style={[styles.pagePadding, styles.innerContainer]}>
@@ -43,7 +43,6 @@ export default function AddAdress() {
                                 onChangeText={handleChange('adressDescription')}
                                 value={values.adressDescription}
                             />
-                            {errors.adressDescription && touched.adressDescription ? <Text>{errors.adressDescription}</Text> : null}
                         </View>
                     </ScrollView>
                     <View>
