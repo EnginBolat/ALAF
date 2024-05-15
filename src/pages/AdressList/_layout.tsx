@@ -1,8 +1,130 @@
 import React from "react";
-import { SafeAreaView, Text } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
+import { AdressContainer, Divider, PrimaryButton } from "../../components";
 
-export default function AdressList(){
-    return <SafeAreaView>
-        <Text>Merhaba, Dünya!</Text>
-    </SafeAreaView>
+
+const data = [
+    {
+        id: 1,
+        adressTitle: "İkamet Adresim",
+        adressDetails: "Adres detayı, lor",
+        leadingIcon: "",
+        trailingIcon: "",
+        currentAdress: "Üsküdar/İstanbul",
+    },
+    {
+        id: 2,
+        adressTitle: "İkamet Adresim",
+        adressDetails: "Adres detayı, lor",
+        leadingIcon: "",
+        trailingIcon: "",
+        currentAdress: "Üsküdar/İstanbul",
+    },
+    {
+        id: 3,
+        adressTitle: "İkamet Adresim",
+        adressDetails: "Adres detayı, lor",
+        leadingIcon: "",
+        trailingIcon: "",
+        currentAdress: "Üsküdar/İstanbul",
+    },
+]
+
+export default function AdressList() {
+    return (
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flex: 1, justifyContent: 'space-between' }}>
+            <SafeAreaView style={styles.container}>
+                <View style={styles.innerContainer}>
+                    <View style={styles.pagePadding}>
+                        {/* Title */}
+                        <Text style={styles.titleStyle}>Kayıtlı Adresler</Text>
+                        <View style={{ height: 10 }} />
+
+
+
+
+                        {/* Information Container */}
+                        <View style={{
+                            paddingVertical: 20,
+                            paddingHorizontal: 16,
+                            borderWidth: 1,
+                            borderRadius: 8,
+                            borderStyle: 'solid',
+                            borderColor: '#EEF0F4',
+                        }}>
+                            {data.map((e) => {
+                                return (
+                                    e.id == 2
+                                        ? <View>
+                                            <View style={{ paddingVertical: 16 }}>
+                                                <Divider />
+                                            </View>
+                                            <AdressContainer
+                                                key={e.id}
+                                                adressTitle={e.adressTitle}
+                                                adressDetails={e.adressDetails}
+                                                leadingIcon={e.leadingIcon}
+                                                trailingIcon={e.trailingIcon}
+                                                currentAdress={e.currentAdress}
+                                            />
+                                            <View style={{ paddingVertical: 16 }}>
+                                                <Divider />
+                                            </View>
+                                        </View>
+                                        : <AdressContainer
+                                            key={e.id}
+                                            adressTitle={e.adressTitle}
+                                            adressDetails={e.adressDetails}
+                                            leadingIcon={e.leadingIcon}
+                                            trailingIcon={e.trailingIcon}
+                                            currentAdress={e.currentAdress}
+                                        />
+                                )
+                            })}
+                        </View>
+                    </View>
+
+
+
+
+                    {/* Button Area */}
+                    <View>
+                        <Divider />
+                        <View style={[styles.pagePadding, styles.buttonStyle]}>
+                            <PrimaryButton
+                                title="Yeni Kayıt Ekle"
+                                onPress={() => { }}
+                            />
+                        </View>
+                    </View>
+                </View>
+            </SafeAreaView>
+        </ScrollView>
+    )
 }
+
+
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    pagePadding: {
+        paddingHorizontal: 20,
+    },
+    innerContainer: {
+        flex: 1,
+        backgroundColor: '#0000',
+        justifyContent: 'space-between',
+    },
+    buttonStyle: {
+        paddingTop: 15,
+    },
+    titleStyle: {
+        fontSize: 14,
+        lineHeight: 18,
+        fontWeight: '500',
+        color: '#3D2852',
+        paddingTop: 30,
+    }
+})
