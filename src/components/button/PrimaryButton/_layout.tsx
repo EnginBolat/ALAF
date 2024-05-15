@@ -5,7 +5,7 @@ type PrimaryButtonProps = {
     onPress: () => void;
     title: string;
     disabled?: boolean;
-    testID: string
+    testID?: string
 };
 
 const PrimaryButton: React.FC<PrimaryButtonProps> = ({ onPress, title, testID, disabled = false }) => {
