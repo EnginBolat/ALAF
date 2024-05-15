@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import IcLocation from "../../../assets/ic/ic_location.svg";
 
 
 type AdressContainerProps = {
@@ -20,7 +21,9 @@ const AdressContainer: React.FC<AdressContainerProps> = ({
 }) => {
     return <View style={styles.container}>
         <View style={styles.innerContainer}>
-            <View style={styles.iconContainer} />
+            <View style={styles.iconContainer}>
+                <IcLocation fill={'#450D87'} />
+            </View>
             <View style={styles.adressContainer}>
                 <Text style={styles.title}>{adressTitle}</Text>
                 <Text style={styles.adressDetails}>{adressDetails.length >= 17
@@ -51,9 +54,10 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         backgroundColor: '#F1EEF7',
         height: 40,
-        width: 40
+        width: 40,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
-    icon: {},
     title: {
         fontWeight: 500,
         fontSize: 14,
