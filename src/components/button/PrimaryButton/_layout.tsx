@@ -1,8 +1,34 @@
 import React from "react";
-import { Text, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
-export default function PrimaryButton() {
-    <TouchableOpacity onPress={() => { }}>
-        <Text>Button</Text>
-    </TouchableOpacity>
-}
+type PrimaryButtonProps = {
+    onPress: () => void;
+    title: string;
+};
+
+const PrimaryButton: React.FC<PrimaryButtonProps> = ({ onPress, title }) => {
+    return (
+        <TouchableOpacity onPress={onPress} style={styles.container}>
+            <Text style={styles.text}>{title}</Text>
+        </TouchableOpacity>
+    );
+};
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#019693',
+        paddingHorizontal: 18,
+        paddingVertical: 16,
+        borderRadius: 6,
+        alignItems: 'center',
+    },
+    text: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: '500',
+        lineHeight: 20,
+        textAlign: 'center',
+    },
+});
+
+export default PrimaryButton;
