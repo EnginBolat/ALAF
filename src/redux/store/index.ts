@@ -1,0 +1,1 @@
+export { store as store } from './store';

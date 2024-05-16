@@ -1,0 +1,1 @@
+export { fetchCities as fetchCities } from './cities.actions';

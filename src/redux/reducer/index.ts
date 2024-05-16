@@ -1,0 +1,1 @@
+export { default as citiesSlice } from './cities.slice';
