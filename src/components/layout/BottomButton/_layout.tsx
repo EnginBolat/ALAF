@@ -6,6 +6,7 @@ type BottomButtonLayoutProps = {
     title: string;
     onPress: () => void
     disabled?: boolean
+    loading?: boolean,
 }
 
 
@@ -13,6 +14,7 @@ const BottomButtonLayout: React.FC<BottomButtonLayoutProps> = ({
     title,
     onPress,
     disabled,
+    loading
 }) => {
     return <View>
         <Divider />
@@ -21,6 +23,7 @@ const BottomButtonLayout: React.FC<BottomButtonLayoutProps> = ({
                 title={title}
                 onPress={onPress}
                 disabled={disabled}
+                loading={loading}
             />
         </View>
     </View>
