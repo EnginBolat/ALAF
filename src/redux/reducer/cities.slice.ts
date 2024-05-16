@@ -1,16 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { fetchCities } from '../actions';
+import { City } from '../../model';
 
 interface CitiesState {
-    cities: any
+    cities?: Array<City>
     error: string;
-    isLoading: boolean;
+    loading: boolean;
 }
 
 const initialState: CitiesState = {
     cities: undefined,
     error: '',
-    isLoading: true
+    loading: true
 }
 
 export const citiesSlice = createSlice({
@@ -28,7 +29,7 @@ export const citiesSlice = createSlice({
             .addCase(fetchCities.rejected, (state, action) => {
                 return { ...state, loading: false, error: `${action.error.message}` }
             })
-    },
+    }
 })
 
 export default citiesSlice.reducer
