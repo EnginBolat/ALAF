@@ -24,7 +24,11 @@ const data = [
     },
 ]
 
-export default function AdressList() {
+
+export default function AdressList({ navigation }) {
+
+    function handleAddNewRecordButton() { navigation.navigate('AddAdress'); }
+    
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.innerContainer}>
@@ -48,6 +52,7 @@ export default function AdressList() {
                                                 adressTitle={e.adressTitle}
                                                 adressDetails={e.adressDetails}
                                                 currentAdress={e.currentAdress}
+                                                onPress={() => { }}
                                             />
                                             <View style={{ paddingVertical: 16 }}>
                                                 <Divider />
@@ -58,6 +63,7 @@ export default function AdressList() {
                                             adressTitle={e.adressTitle}
                                             adressDetails={e.adressDetails}
                                             currentAdress={e.currentAdress}
+                                            onPress={() => { }}
                                         />
                                 )
                             })}
@@ -67,7 +73,7 @@ export default function AdressList() {
                 {/* Button Area */}
                 <BottomButtonLayout
                     title="Yeni Kayıt Ekle"
-                    onPress={() => { }}
+                    onPress={handleAddNewRecordButton}
                 />
             </View>
         </SafeAreaView>
@@ -82,6 +88,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
+        backgroundColor: 'white'
     },
     pagePadding: {
         paddingHorizontal: 20,
