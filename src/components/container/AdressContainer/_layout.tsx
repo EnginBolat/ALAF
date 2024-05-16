@@ -1,12 +1,13 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import IcLocation from "../../../assets/ic/ic_location.svg";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { IcChevronRight, IcLocation } from "../../../assets";
 
 
 type AdressContainerProps = {
     adressTitle: string;
     adressDetails: string;
     currentAdress: string;
+    onPress: () => void;
 }
 
 
@@ -14,8 +15,9 @@ const AdressContainer: React.FC<AdressContainerProps> = ({
     adressTitle,
     adressDetails,
     currentAdress,
+    onPress
 }) => {
-    return <View style={styles.container}>
+    return <TouchableOpacity onPress={onPress} style={styles.container}>
         <View style={styles.innerContainer}>
             <View style={styles.iconContainer}>
                 <IcLocation fill={'#450D87'} />
@@ -27,8 +29,11 @@ const AdressContainer: React.FC<AdressContainerProps> = ({
                     : adressDetails}</Text>
             </View>
         </View>
-        <Text style={styles.currentAdress}>{currentAdress}</Text>
-    </View>
+        <View style={styles.currentAdressContainer}>
+            <Text style={styles.currentAdress}>{currentAdress}</Text>
+            <IcChevronRight fill='#000000' />
+        </View>
+    </TouchableOpacity>
 }
 
 const styles = StyleSheet.create({
@@ -66,13 +71,17 @@ const styles = StyleSheet.create({
         lineHeight: 15,
         paddingTop: 4,
     },
+    currentAdressContainer: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
     currentAdress: {
         fontWeight: '300',
         fontSize: 12,
         lineHeight: 15,
         color: '#3D2852',
+        paddingRight: 12,
     },
-    navigationIcon: {},
 })
 
 
