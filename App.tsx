@@ -16,6 +16,12 @@ type RootStackParamList = {
 
 const Stack = createStackNavigator<RootStackParamList>();
 
+const headerTitleStyle: any = { color: '#FFFFFF', fontWeight: '500', fontSize: 20, lineHeight: 25, };
+const headerStackTitleStyle: any = { color: '#C2BBCF', fontWeight: '300', fontSize: 16, lineHeight: 20, };
+function headerStyle(backgroundColor: string): any {
+  return { borderWidth: 0, elevation: 0, shadowOpacity: 0, backgroundColor: backgroundColor };
+}
+
 function AdressStack() {
   function headerBackImage() {
     return <View style={{ paddingLeft: 12 }}>
@@ -24,28 +30,34 @@ function AdressStack() {
   }
 
   return (
-    <Stack.Navigator initialRouteName="AdressList">
-      <Stack.Screen
-        name="AdressList"
-        component={AdressList}
-        options={{
-          title: 'Adres Bilgilerin',
-          headerTitleStyle: { color: '#FFFFFF', fontWeight: '500', fontSize: 20, lineHeight: 25, },
-          headerBackImage(props) { return headerBackImage() },
-          headerStyle: { borderWidth: 0, elevation: 0, shadowOpacity: 0, backgroundColor: '#440E85' },
-        }}
-      />
-      <Stack.Screen
-        name="AddAdress"
-        component={AddAdress}
-        options={{
-          headerLeftLabelVisible: false,
-          headerBackImage(props) { return headerBackImage() },
-          headerStyle: { borderWidth: 0, elevation: 0, shadowOpacity: 0, backgroundColor: '#440E85' },
-          headerTitle: 'asdadasd',
-        }}
-      />
-    </Stack.Navigator>
+    <LinearGradient
+      colors={['#440E85', 'red']}
+      style={{ flex: 1, }}
+    >
+      <Stack.Navigator initialRouteName="AdressList">
+        <Stack.Screen
+          name="AdressList"
+          component={AdressList}
+          options={{
+            title: 'Adres Bilgilerin',
+            headerTitleStyle: headerTitleStyle,
+            headerBackImage(props) { return headerBackImage() },
+            headerStyle: headerStyle('#440E85'),
+          }}
+        />
+        <Stack.Screen
+          name="AddAdress"
+          component={AddAdress}
+          options={{
+            title: 'Adres Bilgilerin',
+            headerTitleStyle: headerTitleStyle,
+            headerLeftLabelVisible: false,
+            headerBackImage(props) { return headerBackImage() },
+            headerStyle: headerStyle('#440E85'),
+          }}
+        />
+      </Stack.Navigator>
+    </LinearGradient>
   );
 }
 
@@ -57,8 +69,8 @@ function RootStack() {
         component={AdressStack}
         options={{
           title: 'Adreslerim',
-          headerTitleStyle: { color: '#C2BBCF', fontWeight: '300', fontSize: 16, lineHeight: 20, },
-          headerStyle: { borderWidth: 0, elevation: 0, shadowOpacity: 0, backgroundColor: '#220C45' },
+          headerTitleStyle: headerStackTitleStyle,
+          headerStyle: headerStyle('#220C45')
         }}
       />
     </Stack.Navigator >
