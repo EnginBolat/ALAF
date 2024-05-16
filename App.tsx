@@ -1,11 +1,15 @@
 import React from "react";
-import { AdressList, AddAdress } from "./src/pages/";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { createStackNavigator, Header } from '@react-navigation/stack';
-import { NavigationContainer } from "@react-navigation/native";
-import { IcChevronLeft } from "./src/assets";
 import { View } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { createStackNavigator } from '@react-navigation/stack';
 import { LinearGradient } from "react-native-linear-gradient";
+import { NavigationContainer } from "@react-navigation/native";
+
+import { AdressList, AddAdress } from "./src/pages/";
+import { IcChevronLeft } from "./src/assets";
+import { Provider } from "react-redux";
+import { store } from "./src/redux";
+
 
 
 type RootStackParamList = {
@@ -80,11 +84,13 @@ function RootStack() {
 
 
 const App = () => {
-  return <GestureHandlerRootView>
-    <NavigationContainer>
-      <RootStack />
-    </NavigationContainer>
-  </GestureHandlerRootView>
+  return <Provider store={store}>
+    <GestureHandlerRootView>
+      <NavigationContainer>
+        <RootStack />
+      </NavigationContainer>
+    </GestureHandlerRootView>
+  </Provider>
 }
 
 
