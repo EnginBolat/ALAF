@@ -7,7 +7,7 @@ import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet
 import { BottomButtonLayout, PrimaryInput, PrimarySheet } from "../../components";
 
 
-export default function AddAdress() {
+export default function AddAdress({ navigation }) {
 
     // ref
     const bottomSheetModalRef = useRef<BottomSheetModal>(null);
@@ -23,6 +23,15 @@ export default function AddAdress() {
     const handleSheetChanges = useCallback((index: number) => {
         console.log('handleSheetChanges', index);
     }, []);
+
+    function handleOnSubmit() {
+        setTimeout(() => {
+            handlePresentModalPress();
+            setTimeout(() => {
+                navigation.pop();
+            }, 5000);
+        }, 0);
+    }
 
 
     // Form Scheme
@@ -42,11 +51,11 @@ export default function AddAdress() {
                 validationSchema={formScheme}
                 onSubmit={values => {
                     console.log(values)
-                    handlePresentModalPress();
+                    handleOnSubmit();
                 }}
             >
                 {({ handleChange, handleSubmit, values, }) => (
-                    <View style={{ flex: 1, }}>
+                    <View style={{ flex: 1, paddingTop: 30 }}>
                         <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'space-between' }}>
                             <View style={[styles.pagePadding, styles.innerContainer]}>
                                 <PrimaryInput
