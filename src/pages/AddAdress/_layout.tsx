@@ -1,13 +1,22 @@
-import React, { useCallback, useMemo, useRef } from "react";
+import React, { useCallback, useEffect, useMemo, useRef } from "react";
 import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 
 import * as yup from 'yup';
 import { Formik } from "formik";
 import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
-import { BottomButtonLayout, PrimaryInput, PrimarySheet } from "../../components";
+import { useDispatch, useSelector } from "react-redux";
+
+import { BottomButtonLayout, ErrorText, Loading, PrimaryInput, PrimarySheet } from "../../components";
+import { AppDispatch, fetchCities, RootState } from "../../redux";
+import { SelectList } from "react-native-dropdown-select-list";
 
 
-export default function AddAdress({ navigation }) {
+export default function AddAdress({ navigation }: { navigation: any }) {
+    const { cities, loading, error, } = useSelector((state: RootState) => state.cities);
+    const dispatch = useDispatch<AppDispatch>()
+    let newArray = cities?.map((item) => {
+        return { key: item.city, value: item.city }
+    })
 
     // ref
     const bottomSheetModalRef = useRef<BottomSheetModal>(null);
@@ -33,19 +42,23 @@ export default function AddAdress({ navigation }) {
         }, 0);
     }
 
-
     // Form Scheme
     let formScheme = yup.object({
         adressTitle: yup.string().min(1, 'Daha uzun bir başlık gerekli').max(50, 'Daha kısa bir başlık gerekli').required(),
+        adressProvince: yup.string().required(),
         adressDescription: yup.string().min(1, 'Daha uzun bir açıklama gerekli').max(50, 'Daha kısa bir açıklama gerekli').required(),
     });
 
+    useEffect(() => { dispatch(fetchCities()) }, [])
+    if (loading) { return < Loading /> }
+    else if (error) { return <ErrorText error={error} /> }
 
     return <BottomSheetModalProvider>
         <SafeAreaView style={{ flex: 1, }}>
             <Formik
                 initialValues={{
                     adressTitle: '',
+                    adressProvince: '',
                     adressDescription: ''
                 }}
                 validationSchema={formScheme}
@@ -64,10 +77,30 @@ export default function AddAdress({ navigation }) {
                                     value={values.adressTitle}
                                 />
                                 <View style={{ paddingVertical: 12, }}>
-                                    <PrimaryInput
-                                        label='İl'
-                                        onChangeText={handleChange('adressTitle')}
-                                        value={values.adressTitle}
+                                    <SelectList
+                                        placeholder="İl"
+                                        setSelected={handleChange('adressProvince')}
+                                        searchPlaceholder="Ara"
+                                        data={newArray!}
+                                        searchicon={null!}
+                                        boxStyles={{
+                                            alignItems: 'center',
+                                            borderWidth: 1,
+                                            borderStyle: 'solid',
+                                            borderColor: '#E6E9EE',
+                                            backgroundColor: '#FCFCFD',
+                                            paddingVertical: 24,
+                                            paddingHorizontal: 16,
+                                            borderRadius: 8,
+                                        }}
+                                        dropdownTextStyles={{
+                                            paddingVertical: 12
+                                        }}
+                                        dropdownStyles={{
+                                            backgroundColor: '#FCFCFD',
+                                            borderColor: '#E6E9EE',
+                                            borderWidth: 1,
+                                        }}
                                     />
                                 </View>
                                 <PrimaryInput
@@ -80,7 +113,7 @@ export default function AddAdress({ navigation }) {
                         <BottomButtonLayout
                             title="Kaydet"
                             onPress={handleSubmit}
-                            disabled={values.adressDescription.length > 1 && values.adressTitle.length > 1 ? false : true}
+                            disabled={values.adressProvince.length > 1 && values.adressDescription.length > 1 && values.adressTitle.length > 1 ? false : true}
                         />
                     </View>
                 )}
