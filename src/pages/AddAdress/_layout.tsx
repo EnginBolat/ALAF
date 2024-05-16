@@ -61,7 +61,7 @@ export default function AddAdress({ navigation }: { navigation: any }) {
     else if (error || addressError) { return <ErrorText error={error} /> }
 
     return <BottomSheetModalProvider>
-        <SafeAreaView style={{ flex: 1, }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
             <Formik
                 initialValues={{
                     adressTitle: '',
