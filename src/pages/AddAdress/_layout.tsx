@@ -7,12 +7,14 @@ import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet
 import { useDispatch, useSelector } from "react-redux";
 
 import { BottomButtonLayout, ErrorText, Loading, PrimaryInput, PrimarySheet } from "../../components";
-import { AppDispatch, fetchCities, RootState } from "../../redux";
+import { addAdress, AppDispatch, fetchCities, RootState } from "../../redux";
 import { SelectList } from "react-native-dropdown-select-list";
+import { Adress } from "../../model";
 
 
 export default function AddAdress({ navigation }: { navigation: any }) {
-    const { cities, loading, error, } = useSelector((state: RootState) => state.cities);
+    const { cities, loading, error } = useSelector((state: RootState) => state.cities);
+    const { loading: addressLoading, error: addressError } = useSelector((state: RootState) => state.adress);
     const dispatch = useDispatch<AppDispatch>()
     let newArray = cities?.map((item) => {
         return { key: item.city, value: item.city }
@@ -33,12 +35,17 @@ export default function AddAdress({ navigation }: { navigation: any }) {
         console.log('handleSheetChanges', index);
     }, []);
 
-    function handleOnSubmit() {
+    function handleOnSubmit(value: Adress) {
         setTimeout(() => {
-            handlePresentModalPress();
-            setTimeout(() => {
-                navigation.pop();
-            }, 5000);
+            try {
+                handlePresentModalPress();
+                dispatch(addAdress({ formValue: value }))
+                setTimeout(() => {
+                    navigation.pop();
+                }, 5000);
+            } catch (error) {
+                throw error;
+            }
         }, 0);
     }
 
@@ -51,7 +58,7 @@ export default function AddAdress({ navigation }: { navigation: any }) {
 
     useEffect(() => { dispatch(fetchCities()) }, [])
     if (loading) { return < Loading /> }
-    else if (error) { return <ErrorText error={error} /> }
+    else if (error || addressError) { return <ErrorText error={error} /> }
 
     return <BottomSheetModalProvider>
         <SafeAreaView style={{ flex: 1, }}>
@@ -63,8 +70,13 @@ export default function AddAdress({ navigation }: { navigation: any }) {
                 }}
                 validationSchema={formScheme}
                 onSubmit={values => {
-                    console.log(values)
-                    handleOnSubmit();
+                    var adress: Adress = {
+                        adressTitle: values.adressTitle,
+                        city: values.adressProvince,
+                        adressDescription: values.adressDescription,
+                        currentAdress: values.adressProvince,
+                    };
+                    handleOnSubmit(adress);
                 }}
             >
                 {({ handleChange, handleSubmit, values, }) => (
@@ -114,6 +126,7 @@ export default function AddAdress({ navigation }: { navigation: any }) {
                             title="Kaydet"
                             onPress={handleSubmit}
                             disabled={values.adressProvince.length > 1 && values.adressDescription.length > 1 && values.adressTitle.length > 1 ? false : true}
+                            loading={addressLoading}
                         />
                     </View>
                 )}
