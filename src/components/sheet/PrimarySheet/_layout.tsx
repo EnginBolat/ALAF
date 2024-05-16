@@ -20,6 +20,7 @@ const PrimarySheet: React.FC<PrimarySheetProps> = ({
     isHaveIcon
 }) => {
     return <BottomSheetModal
+        enableContentPanningGesture={false}
         ref={bottomSheetModalRef}
         enablePanDownToClose={false}
         index={1}
