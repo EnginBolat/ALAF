@@ -3,10 +3,31 @@ import { StyleSheet, Text } from "react-native";
 
 type ComponentTitleProps = {
     title: string;
+    padding?: number
+    paddingTop?: number;
+    paddingBottom?: number;
+    paddingRight?: number;
+    paddingLeft?: number;
 }
 
-const ComponentTitle: React.FC<ComponentTitleProps> = ({ title }) => {
-    return <Text style={styles.title}>{title}</Text>
+const ComponentTitle: React.FC<ComponentTitleProps> = ({
+    title,
+    padding,
+    paddingTop,
+    paddingBottom,
+    paddingRight,
+    paddingLeft,
+}) => {
+    return <Text style={[
+        styles.title,
+        {
+            padding: padding,
+            paddingTop: paddingTop,
+            paddingBottom: paddingBottom,
+            paddingRight: paddingRight,
+            paddingLeft: paddingLeft,
+        }
+    ]}>{title}</Text>
 }
 
 export default ComponentTitle;
@@ -17,6 +38,6 @@ const styles = StyleSheet.create({
         lineHeight: 18,
         fontWeight: '500',
         color: '#3D2852',
-        paddingTop: 30,
+        // paddingTop: 30,
     },
 })
