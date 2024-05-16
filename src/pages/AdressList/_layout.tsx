@@ -29,7 +29,7 @@ export default function AdressList({ navigation }) {
                         <ScrollView showsVerticalScrollIndicator={false}>
                             {addresses?.map((adress) => {
                                 return (Number(adress.id) % 2 == 0)
-                                    ? <View>
+                                    ? <View key={adress.id}>
                                         <Divider />
                                         <AdressContainer
                                             key={adress.id}
