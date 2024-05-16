@@ -41,7 +41,8 @@ const styles = StyleSheet.create({
         padding: 10,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        paddingVertical: 16,
     },
     innerContainer: {
         flexDirection: 'row',
