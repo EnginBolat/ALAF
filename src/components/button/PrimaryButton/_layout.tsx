@@ -1,14 +1,15 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 type PrimaryButtonProps = {
     onPress: () => void;
     title: string;
     disabled?: boolean;
     testID?: string
+    loading?: boolean;
 };
 
-const PrimaryButton: React.FC<PrimaryButtonProps> = ({ onPress, title, testID, disabled = false }) => {
+const PrimaryButton: React.FC<PrimaryButtonProps> = ({ onPress, title, testID, disabled = false, loading = false }) => {
     return (
         <TouchableOpacity onPress={onPress} style={disabled ? styles.disabledContainer : styles.container} testID={testID} disabled={disabled}>
             <Text
@@ -18,7 +19,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({ onPress, title, testID, d
                         ? { color: '#AAB5C1' }
                         : { color: 'white' }]}
             >
-                {title}
+                {loading ? <ActivityIndicator /> : title}
             </Text>
         </TouchableOpacity>
     );
