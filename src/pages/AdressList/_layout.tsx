@@ -8,7 +8,6 @@ const { height } = Dimensions.get('window');
 
 
 export default function AdressList({ navigation }) {
-
     const { addresses, loading, error, } = useSelector((state: RootState) => state.adress);
     const dispatch = useDispatch<AppDispatch>()
     useEffect(() => { dispatch(adressList()) }, [])
@@ -23,7 +22,7 @@ export default function AdressList({ navigation }) {
             <View style={styles.innerContainer}>
                 <View style={styles.pagePadding}>
                     {/* Title */}
-                    <ComponentTitle title="Kayıtlı Adresler" />
+                    <ComponentTitle title="Kayıtlı Adresler" paddingTop={height * 0.04} />
                     <View style={{ height: 10 }} />
                     {/* Information Container */}
                     <View style={styles.adressListContainer}>
@@ -52,7 +51,6 @@ export default function AdressList({ navigation }) {
                         </ScrollView>
                     </View>
                 </View>
-
             </View>
             <BottomButtonLayout
                 title="Yeni Kayıt Ekle"
@@ -67,13 +65,14 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
+    },
+    innerContainer: {
+        flex: 1,
         justifyContent: 'space-between',
+        backgroundColor: '#0000',
     },
     pagePadding: {
         paddingHorizontal: 20,
-    },
-    innerContainer: {
-        backgroundColor: '#0000',
     },
     adressListContainer: {
         paddingTop: 20,
@@ -82,6 +81,6 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         borderStyle: 'solid',
         borderColor: '#EEF0F4',
-        maxHeight: height * 0.65
+        maxHeight: height * 0.65,
     }
 })
