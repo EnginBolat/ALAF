@@ -68,16 +68,6 @@ export default function AddAdress() {
                                 />
                             </View>
                         </ScrollView>
-                        {/* <View>
-                            <Divider />
-                            <View style={[styles.pagePadding, styles.buttonStyle]}>
-                                <PrimaryButton
-                                    title="Kaydet"
-                                    onPress={handleSubmit}
-                                    disabled={values.adressDescription.length > 1 && values.adressTitle.length > 1 ? false : true}
-                                />
-                            </View>
-                        </View> */}
                         <BottomButtonLayout
                             title="Kaydet"
                             onPress={handleSubmit}
