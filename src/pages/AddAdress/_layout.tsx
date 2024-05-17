@@ -19,48 +19,63 @@ export default function AddAdress({ navigation }: { navigation: any }) {
     const { cities, loading, error } = useSelector((state: RootState) => state.cities);
     const { loading: addressLoading, error: addressError } = useSelector((state: RootState) => state.adress);
     const dispatch = useDispatch<AppDispatch>()
-    let newArray = cities?.map((item) => {
-        return { key: item.city, value: item.city }
-    })
+    let citiesMemoArray = useMemo(() => cities?.map((item) => ({ key: item.city, value: item.city })), [cities]);
 
-    // ref
+
+    /**
+     * Kayıt işlemi gerçekleştikten sonra açılacak olan bottomSheet için referans, memo ve callback işlemleri
+     */
     const bottomSheetModalRef = useRef<BottomSheetModal>(null);
-
-    // variables
     const snapPoints = useMemo(() => ['25%', '25%'], []);
+    const handlePresentModalPress = useCallback(() => { bottomSheetModalRef.current?.present(); }, []);
+    const handleSheetChanges = useCallback((index: number) => { console.log('handleSheetChanges', index); }, []);
 
-    // callbacks
-    const handlePresentModalPress = useCallback(() => {
-        bottomSheetModalRef.current?.present();
-    }, []);
 
-    const handleSheetChanges = useCallback((index: number) => {
-        console.log('handleSheetChanges', index);
-    }, []);
-
+    /**
+     * Kullanıcı gerekeli alanları doldurduktan sonra "Kaydet-Save" butonuna tıklandığında gerçekleşecek olaylardır.
+     * Adres ekleme işlemi başarılı ise ekranda 5 saniye duracak bir BottomSheet açılır ve 5 saniye sonunda kullanıcıyı ana sayfaya tekrar yönlendirir.
+     * @param value : Adress türünde bir modeldir. Alınan modeli addAdress action'una yollayarak eklenme işlemi için sorgu gerçekleştirir.
+     */
     function handleOnSubmit(value: Adress) {
         setTimeout(() => {
             try {
                 handlePresentModalPress();
-                dispatch(addAdress({ formValue: value }))
-                setTimeout(() => {
-                    navigation.pop();
-                }, 5000);
+                try {
+                    dispatch(addAdress({ formValue: value }))
+                    setTimeout(() => {
+                        navigation.pop();
+                    }, 5000);
+                } catch (error) {
+                    throw error;
+                }
             } catch (error) {
                 throw error;
             }
         }, 0);
     }
 
-    // Form Scheme
-    let formScheme = yup.object({
+    /**
+     * Validation işlemi için form şeması
+     */
+    let formSchema = yup.object({
         adressTitle: yup.string().min(1, t('too-short')).max(50, t('too-long')).required(),
         adressProvince: yup.string().required(),
         adressDescription: yup.string().min(1, t('too-short')).max(50, t('too-long')).required(),
     });
 
+    /**
+     * Sayfa her tetiklendiğinde şehirler listesini getirecek olan sorguyu gerçekleştirir
+     */
     useEffect(() => { dispatch(fetchCities()) }, [])
+
+    /**
+     * State loading durumundaysa
+     */
     if (loading) { return < Loading /> }
+
+    /**
+     * Listeyi alırken herhangi bir sorunla karşılaşılırsa
+     */
     else if (error || addressError) { return <ErrorText error={error} /> }
 
     return <BottomSheetModalProvider>
@@ -71,7 +86,7 @@ export default function AddAdress({ navigation }: { navigation: any }) {
                     adressProvince: '',
                     adressDescription: ''
                 }}
-                validationSchema={formScheme}
+                validationSchema={formSchema}
                 onSubmit={values => {
                     var adress: Adress = {
                         adressTitle: values.adressTitle,
@@ -96,7 +111,7 @@ export default function AddAdress({ navigation }: { navigation: any }) {
                                         placeholder={t("province")}
                                         setSelected={handleChange('adressProvince')}
                                         searchPlaceholder={t("search")}
-                                        data={newArray!}
+                                        data={citiesMemoArray!}
                                         searchicon={null!}
                                         boxStyles={{
                                             alignItems: 'center',
