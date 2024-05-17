@@ -5,13 +5,12 @@ import * as yup from 'yup';
 import { Formik } from "formik";
 import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { useDispatch, useSelector } from "react-redux";
-import { SelectList } from "react-native-dropdown-select-list";
+import { useTranslation } from "react-i18next";
 
 import { BottomButtonLayout, ErrorText, Loading, PrimaryInput, PrimarySheet, SingleSelectDropdown } from "../../components";
 import { addAdress, AppDispatch, fetchCities, RootState } from "../../redux";
 import { Adress } from "../../model";
 import { Colors } from "../../constants";
-import { useTranslation } from "react-i18next";
 
 
 export default function AddAdress({ navigation }: { navigation: any }) {
