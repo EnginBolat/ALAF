@@ -62,13 +62,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     title: {
-        fontWeight: 500,
+        fontWeight: '500',
         fontSize: 14,
         lineHeight: 18,
     },
     adressDetails: {
         color: Colors.secondaryTitle,
-        fontWeight: 300,
+        fontWeight: '300',
         fontSize: 12,
         lineHeight: 15,
         paddingTop: 4,
