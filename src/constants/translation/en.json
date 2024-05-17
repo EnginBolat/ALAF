@@ -8,5 +8,7 @@
     "address-title": "Address Title (Home, Work, etc.)",
     "address-detail": "Address Detail",
     "address-saved": "Address saved successfully!",
-    "save": "Save"
+    "save": "Save",
+    "address-informations": "Your Address Information",
+    "my-addresses": "My Addresses"
 }

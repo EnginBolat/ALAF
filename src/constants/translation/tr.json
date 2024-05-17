@@ -8,5 +8,7 @@
     "address-title": "Adres başlığı (Ev, işyeri vb.)",
     "address-detail": "Adres Detayı",
     "address-saved": "Adresin başarıyla kaydedildi!",
-    "save": "Kaydet"
+    "save": "Kaydet",
+    "address-informations": "Adres Bilgilerim",
+    "my-addresses": "Adreslerim"
 }
