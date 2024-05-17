@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { createStackNavigator } from '@react-navigation/stack';
 import { LinearGradient } from "react-native-linear-gradient";
@@ -9,7 +9,7 @@ import { AdressList, AddAdress } from "./src/pages/";
 import { IcChevronLeft } from "./src/assets";
 import { Provider } from "react-redux";
 import { store } from "./src/redux";
-
+import { useTranslation } from "react-i18next";
 
 
 type RootStackParamList = {
@@ -27,6 +27,8 @@ function headerStyle(backgroundColor: string): any {
 }
 
 function AdressStack() {
+  const { t } = useTranslation();
+
   function headerBackImage() {
     return <View style={{ paddingLeft: 12 }}>
       <IcChevronLeft fill={'#C2BBCF'} />
@@ -43,7 +45,7 @@ function AdressStack() {
           name="AdressList"
           component={AdressList}
           options={{
-            title: 'Adres Bilgilerin',
+            title: t('address-informations'),
             headerTitleStyle: headerTitleStyle,
             headerBackImage(props) { return headerBackImage() },
             headerStyle: headerStyle('#440E85'),
@@ -53,7 +55,7 @@ function AdressStack() {
           name="AddAdress"
           component={AddAdress}
           options={{
-            title: 'Adres Bilgilerin',
+            title: t('address-informations'),
             headerTitleStyle: headerTitleStyle,
             headerLeftLabelVisible: false,
             headerBackImage(props) { return headerBackImage() },
@@ -66,15 +68,31 @@ function AdressStack() {
 }
 
 function RootStack() {
+  const { t, i18n } = useTranslation();
+  const lng = i18n.language;
   return (
     <Stack.Navigator initialRouteName="AdressStack">
       <Stack.Screen
         name="AdressStack"
         component={AdressStack}
         options={{
-          title: 'Adreslerim',
+          title: t('my-addresses'),
           headerTitleStyle: headerStackTitleStyle,
-          headerStyle: headerStyle('#220C45')
+          headerStyle: headerStyle('#220C45'),
+          headerRight(props) {
+            return <TouchableOpacity
+              style={{ paddingRight: 12, }}
+              onPress={() => {
+                if (lng === "en") {
+                  i18n.changeLanguage("tr");
+                } else {
+                  i18n.changeLanguage("en");
+                }
+
+              }}>
+              <Text style={{ color: 'white', fontWeight: "500" }}>{lng.toUpperCase()}</Text>
+            </TouchableOpacity>
+          },
         }}
       />
     </Stack.Navigator >
