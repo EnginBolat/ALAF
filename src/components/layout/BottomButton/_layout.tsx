@@ -16,7 +16,7 @@ const BottomButtonLayout: React.FC<BottomButtonLayoutProps> = ({
     disabled,
     loading
 }) => {
-    return <View>
+    return <View testID="layout">
         <Divider />
         <View style={[styles.pagePadding, styles.buttonStyle]}>
             <PrimaryButton
