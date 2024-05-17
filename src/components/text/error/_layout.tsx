@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from "react-native"
+import { Colors } from "../../../constants"
 
 type ErrorTextProps = {
     error: string
@@ -24,6 +25,6 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         fontSize: 18,
         textAlign: 'center',
-        color: '#6F6085'
+        color: Colors.secondaryTitle,
     },
 })

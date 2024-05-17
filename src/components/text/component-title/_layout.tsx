@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { StyleSheet, Text } from "react-native";
+import { Colors } from "../../../constants";
 
 type ComponentTitleProps = {
     title: string;
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         lineHeight: 18,
         fontWeight: '500',
-        color: '#3D2852',
+        color: Colors.thirdTitle,
         // paddingTop: 30,
     },
 })

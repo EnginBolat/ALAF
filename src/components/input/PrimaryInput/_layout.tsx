@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Animated, StyleSheet, Text, TextInput, View } from "react-native";
+import { Colors } from "../../../constants";
 
 type PrimaryInputProps = {
     label: string;
@@ -51,7 +52,7 @@ const PrimaryInput: React.FC<PrimaryInputProps> = ({ label, onChangeText, value 
                 {label}
             </Animated.Text>
             <TextInput
-                cursorColor={'#6F6085'}
+                cursorColor={Colors.secondaryTitle}
                 selectionHandleColor={''}
                 style={styles.inputText}
                 value={value}
@@ -67,8 +68,8 @@ const styles = StyleSheet.create({
     container: {
         borderWidth: 1,
         borderStyle: 'solid',
-        borderColor: '#E6E9EE',
-        backgroundColor: '#FCFCFD',
+        borderColor: Colors.secondaryBorder,
+        backgroundColor: Colors.secondaryBackground,
         paddingVertical: 21,
         paddingHorizontal: 16,
         borderRadius: 8,
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         fontSize: 14,
         lineHeight: 18,
-        color: '#6F6085',
+        color: Colors.secondaryTitle
     },
     inputText: {
         fontWeight: '300',

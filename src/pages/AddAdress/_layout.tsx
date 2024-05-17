@@ -10,6 +10,7 @@ import { BottomButtonLayout, ErrorText, Loading, PrimaryInput, PrimarySheet } fr
 import { addAdress, AppDispatch, fetchCities, RootState } from "../../redux";
 import { SelectList } from "react-native-dropdown-select-list";
 import { Adress } from "../../model";
+import { Colors } from "../../constants";
 
 
 export default function AddAdress({ navigation }: { navigation: any }) {
@@ -61,7 +62,7 @@ export default function AddAdress({ navigation }: { navigation: any }) {
     else if (error || addressError) { return <ErrorText error={error} /> }
 
     return <BottomSheetModalProvider>
-        <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: Colors.white }}>
             <Formik
                 initialValues={{
                     adressTitle: '',
@@ -99,8 +100,8 @@ export default function AddAdress({ navigation }: { navigation: any }) {
                                             alignItems: 'center',
                                             borderWidth: 1,
                                             borderStyle: 'solid',
-                                            borderColor: '#E6E9EE',
-                                            backgroundColor: '#FCFCFD',
+                                            borderColor: Colors.secondaryBorder,
+                                            backgroundColor: Colors.secondaryBackground,
                                             paddingVertical: 24,
                                             paddingHorizontal: 16,
                                             borderRadius: 8,
@@ -109,8 +110,8 @@ export default function AddAdress({ navigation }: { navigation: any }) {
                                             paddingVertical: 12
                                         }}
                                         dropdownStyles={{
-                                            backgroundColor: '#FCFCFD',
-                                            borderColor: '#E6E9EE',
+                                            backgroundColor: Colors.secondaryBackground,
+                                            borderColor: Colors.secondaryBorder,
                                             borderWidth: 1,
                                         }}
                                     />
@@ -146,7 +147,7 @@ export default function AddAdress({ navigation }: { navigation: any }) {
 const styles = StyleSheet.create({
     innerContainer: {
         flex: 1,
-        backgroundColor: '#0000',
+        backgroundColor: Colors.white,
     },
     pagePadding: {
         paddingHorizontal: 20,

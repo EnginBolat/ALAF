@@ -8,6 +8,8 @@ const Colors = {
     secondaryTitle: "#6F6085",
     thirdTitle: "#3D2852",
     background: "#ffff",
+    secondaryBackground: "#FCFCFD",
+    thirdBackground: "rgba(0,0,0,0.50)",
     primaryIcon: "#450D87",
     primaryIconBackground: "#F1EEF7",
     success: "#E3F7F7",

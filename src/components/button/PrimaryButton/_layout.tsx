@@ -1,5 +1,6 @@
 import React from "react";
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Colors } from "../../../constants";
 
 type PrimaryButtonProps = {
     onPress: () => void;
@@ -17,7 +18,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({ onPress, title, testID, d
                     styles.text,
                     disabled
                         ? { color: '#AAB5C1' }
-                        : { color: 'white' }]}
+                        : { color: Colors.white }]}
             >
                 {loading ? <ActivityIndicator /> : title}
             </Text>
@@ -27,19 +28,19 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({ onPress, title, testID, d
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#019693',
+        backgroundColor: Colors.button,
         paddingVertical: 18,
         borderRadius: 6,
         alignItems: 'center',
     },
     disabledContainer: {
-        backgroundColor: '#EEF0F4',
+        backgroundColor: Colors.primaryBorder,
         paddingVertical: 18,
         borderRadius: 6,
         alignItems: 'center',
     },
     text: {
-        color: 'white',
+        color: Colors.white,
         fontSize: 16,
         fontWeight: '500',
         lineHeight: 20,

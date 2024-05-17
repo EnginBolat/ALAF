@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { IcChevronRight, IcLocation } from "../../../assets";
+import { Colors } from "../../../constants";
 
 
 type AdressContainerProps = {
@@ -20,7 +21,7 @@ const AdressContainer: React.FC<AdressContainerProps> = ({
     return <TouchableOpacity onPress={onPress} style={styles.container}>
         <View style={styles.innerContainer}>
             <View style={styles.iconContainer}>
-                <IcLocation fill={'#450D87'} />
+                <IcLocation fill={Colors.primaryIcon} />
             </View>
             <View style={styles.adressContainer}>
                 <Text style={styles.title}>{adressTitle}</Text>
@@ -31,7 +32,7 @@ const AdressContainer: React.FC<AdressContainerProps> = ({
         </View>
         <View style={styles.currentAdressContainer}>
             <Text style={styles.currentAdress}>{currentAdress}</Text>
-            <IcChevronRight fill='#000000' />
+            <IcChevronRight fill={Colors.primaryTitle} />
         </View>
     </TouchableOpacity>
 }
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
     },
     iconContainer: {
         borderRadius: 100,
-        backgroundColor: '#F1EEF7',
+        backgroundColor: Colors.primaryIconBackground,
         height: 40,
         width: 40,
         alignItems: 'center',
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
         lineHeight: 18,
     },
     adressDetails: {
-        color: "#6F6085",
+        color: Colors.secondaryTitle,
         fontWeight: 300,
         fontSize: 12,
         lineHeight: 15,
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
         fontWeight: '300',
         fontSize: 12,
         lineHeight: 15,
-        color: '#3D2852',
+        color: Colors.thirdTitle,
         paddingRight: 12,
     },
 })

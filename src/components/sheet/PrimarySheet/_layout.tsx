@@ -1,6 +1,7 @@
 import { BottomSheetModal, BottomSheetView } from "@gorhom/bottom-sheet";
 import { IcSuccess } from "../../../assets";
 import { StyleSheet, Text, View } from "react-native";
+import { Colors } from "../../../constants";
 
 type PrimarySheetProps = {
     bottomSheetModalRef: any,
@@ -33,9 +34,9 @@ const PrimarySheet: React.FC<PrimarySheetProps> = ({
             style={styles.bsContentContainer}>
             {isHaveIcon && <View style={styles.bsIconContainer}>
                 {isSuccess
-                    ? <IcSuccess fill='#019693' />
+                    ? <IcSuccess fill={Colors.button} />
                     // Buraya getirelecek error iconu ile error handle edilebilir.
-                    : <IcSuccess fill='#019693' />}
+                    : <IcSuccess fill={Colors.button} />}
             </View>}
             <Text style={styles.bsTitle}>{title}</Text>
 
@@ -46,10 +47,10 @@ const PrimarySheet: React.FC<PrimarySheetProps> = ({
 
 const styles = StyleSheet.create({
     bsBackground: {
-        backgroundColor: 'rgba(0,0,0,0.50)'
+        backgroundColor: Colors.thirdBackground,
     },
     bsIndicator: {
-        backgroundColor: '#EEF0F4'
+        backgroundColor: Colors.primaryBorder,
     },
     bsContentContainer: {
         flex: 1,
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     },
     bsIconContainer: {
         padding: 16,
-        backgroundColor: '#E3F7F7',
+        backgroundColor: Colors.success,
         borderRadius: 100
     },
     bsTitle: {

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { AdressContainer, BottomButtonLayout, ComponentTitle, Divider, ErrorText, Loading } from "../../components";
 import { AppDispatch, RootState, adressList } from "../../redux";
+import { Colors } from "../../constants";
 const { height } = Dimensions.get('window');
 
 
@@ -64,12 +65,12 @@ export default function AdressList({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: Colors.white,
     },
     innerContainer: {
         flex: 1,
         justifyContent: 'space-between',
-        backgroundColor: '#0000',
+        backgroundColor: Colors.white,
     },
     pagePadding: {
         paddingHorizontal: 20,
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 8,
         borderStyle: 'solid',
-        borderColor: '#EEF0F4',
+        borderColor: Colors.primaryBorder,
         maxHeight: height * 0.65,
     }
 })
