@@ -7,6 +7,7 @@ import { AppDispatch, RootState, adressList } from "../../redux";
 import { Colors } from "../../constants";
 import { useTranslation } from 'react-i18next';
 import { useFocusEffect } from "@react-navigation/native";
+import { Adress } from "../../model";
 const { height } = Dimensions.get('window');
 
 
@@ -22,10 +23,13 @@ export default function AdressList({ navigation }) {
         }, [dispatch])
     );
 
-    if (loading) { return < Loading /> }
-    else if (error) { return <ErrorText error={error} /> }
+    if (loading) { return < Loading /> } // State loading durumundaysa
+    else if (error) { return <ErrorText error={error} /> } // Listeyi alırken herhangi bir sorunla karşılaşılırsa
 
-    function handleAddNewRecordButton() { navigation.navigate('AddAdress'); }
+    // Adres Ekleme Sayfasına Yönlendirir
+    const handleAddNewRecordButton = useCallback(() => {
+        navigation.navigate('AddAdress');
+    }, [navigation]);
 
     return (
         <SafeAreaView style={styles.container}>
@@ -38,25 +42,7 @@ export default function AdressList({ navigation }) {
                     <View style={styles.adressListContainer}>
                         <ScrollView showsVerticalScrollIndicator={false}>
                             {addresses?.map((adress) => {
-                                return (Number(adress.id) % 2 == 0)
-                                    ? <View key={adress.id}>
-                                        <Divider />
-                                        <AdressContainer
-                                            key={adress.id}
-                                            adressTitle={adress.adressTitle}
-                                            adressDetails={adress.adressDescription}
-                                            currentAdress={adress.currentAdress}
-                                            onPress={() => { }}
-                                        />
-                                        <Divider />
-                                    </View>
-                                    : <AdressContainer
-                                        key={adress.id}
-                                        adressTitle={adress.adressTitle}
-                                        adressDetails={adress.adressDescription}
-                                        currentAdress={adress.currentAdress}
-                                        onPress={() => { }}
-                                    />
+                                return <AddressItem key={adress.id} address={adress} />
                             })}
                         </ScrollView>
                     </View>
@@ -68,6 +54,34 @@ export default function AdressList({ navigation }) {
             />
         </SafeAreaView >
     )
+}
+
+interface AdressItemProps {
+    address: Adress;
+}
+
+const AddressItem: React.FC<AdressItemProps> = ({ address }) => {
+    return <View>
+        (Number(address.id) % 2 == 0)
+        ? <View key={address.id}>
+            <Divider />
+            <AdressContainer
+                key={address.id}
+                adressTitle={address.adressTitle}
+                adressDetails={address.adressDescription}
+                currentAdress={address.currentAdress}
+                onPress={() => { }}
+            />
+            <Divider />
+        </View>
+        : <AdressContainer
+            key={address.id}
+            adressTitle={address.adressTitle}
+            adressDetails={address.adressDescription}
+            currentAdress={address.currentAdress}
+            onPress={() => { }}
+        />
+    </View>
 }
 
 
