@@ -59,8 +59,8 @@ const AdressList: React.FC<AdressListProps> = ({ navigation }) => {
                     <View style={{ height: 10 }} />
                     <View style={styles.adressListContainer}>
                         <ScrollView showsVerticalScrollIndicator={false}>
-                            {addresses?.map((adress) => {
-                                return <AddressItem key={adress.id} address={adress} />
+                            {addresses?.map((adress, index) => {
+                                return <AddressItem key={adress.id} address={adress} index={index} />
                             })}
                         </ScrollView>
                     </View>
@@ -80,14 +80,15 @@ const AdressList: React.FC<AdressListProps> = ({ navigation }) => {
 */
 interface AddressItemProps {
     address: Adress;
+    index: number
 }
 
 /**
  * React.memo kullanılmasının sebebi, address değerinin değişmediği seneryoda yeniden render işlemi yapmaması. Böylelikle uygulamaya performans kazandırması
 */
-const AddressItem: React.FC<AddressItemProps> = React.memo(({ address }) => {
+const AddressItem: React.FC<AddressItemProps> = React.memo(({ address, index }) => {
 
-    const isDividerRendered = Number(address.id) % 2 == 0;
+    const isDividerRendered = index % 2 == 1;
 
     return <View key={address.id}>
         {isDividerRendered && <Divider />}
@@ -101,7 +102,6 @@ const AddressItem: React.FC<AddressItemProps> = React.memo(({ address }) => {
         {isDividerRendered && <Divider />}
     </View>
 });
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
