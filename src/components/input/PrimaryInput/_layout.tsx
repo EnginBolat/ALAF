@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Animated, StyleSheet, Text, TextInput, View } from "react-native";
+import { Animated, Platform, StyleSheet, Text, TextInput, View } from "react-native";
 import { Colors } from "../../../constants";
 
 type PrimaryInputProps = {
@@ -15,7 +15,6 @@ const PrimaryInput: React.FC<PrimaryInputProps> = ({ label, onChangeText, value 
     ).current;
 
     const handleFocus = () => {
-        // Animate the label up and reduce its size when input is focus
         Animated.timing(floatingLabelAnimation, {
             toValue: 1,
             duration: 150,
@@ -24,7 +23,6 @@ const PrimaryInput: React.FC<PrimaryInputProps> = ({ label, onChangeText, value 
     };
 
     const handleBlur = () => {
-        // If the input is empty, animate the floating label back to its original position
         if (!value) {
             Animated.timing(floatingLabelAnimation, {
                 toValue: 0,
@@ -34,7 +32,6 @@ const PrimaryInput: React.FC<PrimaryInputProps> = ({ label, onChangeText, value 
         }
     };
 
-    // Define animated styles for the floating label
     const floatingLabelStyle = {
         top: floatingLabelAnimation.interpolate({
             inputRange: [0, 1],
@@ -54,7 +51,7 @@ const PrimaryInput: React.FC<PrimaryInputProps> = ({ label, onChangeText, value 
             <TextInput
                 cursorColor={Colors.secondaryTitle}
                 selectionHandleColor={''}
-                style={styles.inputText}
+                style={[styles.inputText, { height: value.length > 0 ? "auto" : 18 }]}
                 value={value}
                 onChangeText={val => onChangeText(val)}
                 onFocus={handleFocus}
@@ -82,8 +79,10 @@ const styles = StyleSheet.create({
     },
     inputText: {
         fontWeight: '300',
+        padding: 0,
         fontSize: 14,
-        lineHeight: 18
+        lineHeight: 18,
+        includeFontPadding: false
     },
 })
 
