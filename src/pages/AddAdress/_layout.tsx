@@ -5,15 +5,17 @@ import * as yup from 'yup';
 import { Formik } from "formik";
 import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { useDispatch, useSelector } from "react-redux";
+import { SelectList } from "react-native-dropdown-select-list";
 
 import { BottomButtonLayout, ErrorText, Loading, PrimaryInput, PrimarySheet } from "../../components";
 import { addAdress, AppDispatch, fetchCities, RootState } from "../../redux";
-import { SelectList } from "react-native-dropdown-select-list";
 import { Adress } from "../../model";
 import { Colors } from "../../constants";
+import { useTranslation } from "react-i18next";
 
 
 export default function AddAdress({ navigation }: { navigation: any }) {
+    const { t } = useTranslation();
     const { cities, loading, error } = useSelector((state: RootState) => state.cities);
     const { loading: addressLoading, error: addressError } = useSelector((state: RootState) => state.adress);
     const dispatch = useDispatch<AppDispatch>()
@@ -52,9 +54,9 @@ export default function AddAdress({ navigation }: { navigation: any }) {
 
     // Form Scheme
     let formScheme = yup.object({
-        adressTitle: yup.string().min(1, 'Daha uzun bir başlık gerekli').max(50, 'Daha kısa bir başlık gerekli').required(),
+        adressTitle: yup.string().min(1, t('too-short')).max(50, t('too-long')).required(),
         adressProvince: yup.string().required(),
-        adressDescription: yup.string().min(1, 'Daha uzun bir açıklama gerekli').max(50, 'Daha kısa bir açıklama gerekli').required(),
+        adressDescription: yup.string().min(1, t('too-short')).max(50, t('too-long')).required(),
     });
 
     useEffect(() => { dispatch(fetchCities()) }, [])
@@ -85,15 +87,15 @@ export default function AddAdress({ navigation }: { navigation: any }) {
                         <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'space-between' }}>
                             <View style={[styles.pagePadding, styles.innerContainer]}>
                                 <PrimaryInput
-                                    label='Adres başlığı (Ev, işyeri vs.)'
+                                    label={t("address-title")}
                                     onChangeText={handleChange('adressTitle')}
                                     value={values.adressTitle}
                                 />
                                 <View style={{ paddingVertical: 12, }}>
                                     <SelectList
-                                        placeholder="İl"
+                                        placeholder={t("province")}
                                         setSelected={handleChange('adressProvince')}
-                                        searchPlaceholder="Ara"
+                                        searchPlaceholder={t("search")}
                                         data={newArray!}
                                         searchicon={null!}
                                         boxStyles={{
@@ -117,14 +119,14 @@ export default function AddAdress({ navigation }: { navigation: any }) {
                                     />
                                 </View>
                                 <PrimaryInput
-                                    label='Adres Detayı'
+                                    label={t("address-detail")}
                                     onChangeText={handleChange('adressDescription')}
                                     value={values.adressDescription}
                                 />
                             </View>
                         </ScrollView>
                         <BottomButtonLayout
-                            title="Kaydet"
+                            title={t('save')}
                             onPress={handleSubmit}
                             disabled={values.adressProvince.length > 1 && values.adressDescription.length > 1 && values.adressTitle.length > 1 ? false : true}
                             loading={addressLoading}
@@ -135,7 +137,7 @@ export default function AddAdress({ navigation }: { navigation: any }) {
             <PrimarySheet
                 isHaveIcon={true}
                 isSuccess={true}
-                title="Adresin başarıyla kaydedildi!"
+                title={t('address-saved')}
                 bottomSheetModalRef={bottomSheetModalRef}
                 snapPoints={snapPoints}
                 handleSheetChanges={handleSheetChanges}

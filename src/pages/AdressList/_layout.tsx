@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { AdressContainer, BottomButtonLayout, ComponentTitle, Divider, ErrorText, Loading } from "../../components";
 import { AppDispatch, RootState, adressList } from "../../redux";
 import { Colors } from "../../constants";
+import { useTranslation } from 'react-i18next';
 const { height } = Dimensions.get('window');
 
 
 export default function AdressList({ navigation }) {
+    const { t } = useTranslation();
     const { addresses, loading, error, } = useSelector((state: RootState) => state.adress);
     const dispatch = useDispatch<AppDispatch>()
     useEffect(() => { dispatch(adressList()) }, [])
@@ -23,7 +25,7 @@ export default function AdressList({ navigation }) {
             <View style={styles.innerContainer}>
                 <View style={styles.pagePadding}>
                     {/* Title */}
-                    <ComponentTitle title="Kayıtlı Adresler" paddingTop={height * 0.04} />
+                    <ComponentTitle title={t('registered-addresses')} paddingTop={height * 0.04} />
                     <View style={{ height: 10 }} />
                     {/* Information Container */}
                     <View style={styles.adressListContainer}>
@@ -54,7 +56,7 @@ export default function AdressList({ navigation }) {
                 </View>
             </View>
             <BottomButtonLayout
-                title="Yeni Kayıt Ekle"
+                title={t('add-new-record')}
                 onPress={handleAddNewRecordButton}
             />
         </SafeAreaView >

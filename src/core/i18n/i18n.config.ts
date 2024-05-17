@@ -33,7 +33,7 @@ i18next
         defaultNS: undefined,
         compatibilityJSON: 'v3',
         supportedLngs: ['en', 'tr'],
-        fallbackLng: 'en',
+        fallbackLng: 'tr',
         interpolation: {
             escapeValue: false,
         },
