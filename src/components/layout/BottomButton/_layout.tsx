@@ -1,6 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import { Divider } from "../../divider";
 import { PrimaryButton } from "../../button";
+import { Padding } from "../../../constants";
 
 type BottomButtonLayoutProps = {
     title: string;
@@ -31,11 +32,11 @@ const BottomButtonLayout: React.FC<BottomButtonLayoutProps> = ({
 
 const styles = StyleSheet.create({
     pagePadding: {
-        paddingHorizontal: 20,
-        marginBottom: 16
+        paddingHorizontal: Padding.p20,
+        marginBottom: Padding.p16,
     },
     buttonStyle: {
-        paddingTop: 16,
+        paddingTop: Padding.p16,
     },
 })
 

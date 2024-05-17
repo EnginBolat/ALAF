@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native"
-import { Colors } from "../../../constants"
+import { Colors, Padding } from "../../../constants"
 
 type ErrorTextProps = {
     error: string
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 20,
+        padding: Padding.p20,
         backgroundColor: 'white'
     },
     error: {

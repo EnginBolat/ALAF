@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { IcChevronRight, IcLocation } from "../../../assets";
-import { Colors } from "../../../constants";
+import { Colors, Padding } from "../../../constants";
 
 
 type AdressContainerProps = {
@@ -39,11 +39,11 @@ const AdressContainer: React.FC<AdressContainerProps> = ({
 
 const styles = StyleSheet.create({
     container: {
-        padding: 10,
+        padding: Padding.p10,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingVertical: 16,
+        paddingVertical: Padding.p16,
     },
     innerContainer: {
         flexDirection: 'row',
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     },
     adressContainer: {
         flexDirection: 'column',
-        paddingLeft: 12,
+        paddingLeft: Padding.p12,
     },
     iconContainer: {
         borderRadius: 100,
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         fontWeight: '300',
         fontSize: 12,
         lineHeight: 15,
-        paddingTop: 4,
+        paddingTop: Padding.p4,
     },
     currentAdressContainer: {
         flexDirection: 'row',
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
         lineHeight: 15,
         color: Colors.thirdTitle,
-        paddingRight: 12,
+        paddingRight: Padding.p12,
     },
 })
 

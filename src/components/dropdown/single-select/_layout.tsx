@@ -1,5 +1,5 @@
 import { SelectList } from "react-native-dropdown-select-list";
-import { Colors } from "../../../constants";
+import { Colors, Padding } from "../../../constants";
 import { StyleSheet } from "react-native";
 
 interface SingleSelectDropdownProps {
@@ -30,12 +30,12 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderColor: Colors.secondaryBorder,
         backgroundColor: Colors.secondaryBackground,
-        paddingVertical: 24,
-        paddingHorizontal: 16,
+        paddingVertical: Padding.p24,
+        paddingHorizontal: Padding.p16,
         borderRadius: 8,
     },
     dropdownTextStyles: {
-        paddingVertical: 12
+        paddingVertical: Padding.p12,
     },
     dropdownStyles: {
         backgroundColor: Colors.secondaryBackground,

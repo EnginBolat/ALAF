@@ -41,6 +41,5 @@ const styles = StyleSheet.create({
         lineHeight: 18,
         fontWeight: '500',
         color: Colors.thirdTitle,
-        // paddingTop: 30,
     },
 })

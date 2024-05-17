@@ -1,7 +1,7 @@
 import { BottomSheetModal, BottomSheetView } from "@gorhom/bottom-sheet";
 import { IcSuccess } from "../../../assets";
 import { StyleSheet, Text, View } from "react-native";
-import { Colors } from "../../../constants";
+import { Colors, Padding } from "../../../constants";
 
 type PrimarySheetProps = {
     bottomSheetModalRef: any,
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     bsIconContainer: {
-        padding: 16,
+        padding: Padding.p16,
         backgroundColor: Colors.success,
         borderRadius: 100
     },
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         fontSize: 16,
         lineHeight: 16,
-        paddingTop: 16,
+        paddingTop: Padding.p16,
     }
 })
 
