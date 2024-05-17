@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import { BottomButtonLayout, ErrorText, Loading, PrimaryInput, PrimarySheet, SingleSelectDropdown } from "../../components";
 import { addAdress, AppDispatch, fetchCities, RootState } from "../../redux";
 import { Adress } from "../../model";
-import { Colors } from "../../constants";
+import { Colors, Padding } from "../../constants";
 
 
 export default function AddAdress({ navigation }: { navigation: any }) {
@@ -20,21 +20,11 @@ export default function AddAdress({ navigation }: { navigation: any }) {
     const dispatch = useDispatch<AppDispatch>()
     let citiesMemoArray = useMemo(() => cities?.map((item) => ({ key: item.city, value: item.city })), [cities]);
 
-
-    /**
-     * Kayıt işlemi gerçekleştikten sonra açılacak olan bottomSheet için referans, memo ve callback işlemleri
-     */
     const bottomSheetModalRef = useRef<BottomSheetModal>(null);
     const snapPoints = useMemo(() => ['25%', '25%'], []);
     const handlePresentModalPress = useCallback(() => { bottomSheetModalRef.current?.present(); }, []);
     const handleSheetChanges = useCallback((index: number) => { console.log('handleSheetChanges', index); }, []);
 
-
-    /**
-     * Kullanıcı gerekeli alanları doldurduktan sonra "Kaydet-Save" butonuna tıklandığında gerçekleşecek olaylardır.
-     * Adres ekleme işlemi başarılı ise ekranda 5 saniye duracak bir BottomSheet açılır ve 5 saniye sonunda kullanıcıyı ana sayfaya tekrar yönlendirir.
-     * @param value : Adress türünde bir modeldir. Alınan modeli addAdress action'una yollayarak eklenme işlemi için sorgu gerçekleştirir.
-     */
     function handleOnSubmit(value: Adress) {
         setTimeout(() => {
             try {
@@ -53,32 +43,20 @@ export default function AddAdress({ navigation }: { navigation: any }) {
         }, 0);
     }
 
-    /**
-     * Validation işlemi için form şeması
-     */
     let formSchema = yup.object({
         adressTitle: yup.string().min(1, t('too-short')).max(50, t('too-long')).required(),
         adressProvince: yup.string().required(),
         adressDescription: yup.string().min(1, t('too-short')).max(50, t('too-long')).required(),
     });
 
-    /**
-     * Sayfa her tetiklendiğinde şehirler listesini getirecek olan sorguyu gerçekleştirir
-     */
     useEffect(() => { dispatch(fetchCities()) }, [])
 
-    /**
-     * State loading durumundaysa
-     */
     if (loading) { return < Loading /> }
 
-    /**
-     * Listeyi alırken herhangi bir sorunla karşılaşılırsa
-     */
     else if (error || addressError) { return <ErrorText error={error} /> }
 
     return <BottomSheetModalProvider>
-        <SafeAreaView style={{ flex: 1, backgroundColor: Colors.white }}>
+        <SafeAreaView style={styles.container}>
             <Formik
                 initialValues={{
                     adressTitle: '',
@@ -97,15 +75,15 @@ export default function AddAdress({ navigation }: { navigation: any }) {
                 }}
             >
                 {({ handleChange, handleSubmit, values, }) => (
-                    <View style={{ flex: 1, paddingTop: 30 }}>
-                        <ScrollView contentContainerStyle={{ flex: 1, justifyContent: 'space-between' }}>
+                    <View style={styles.formContainer}>
+                        <ScrollView contentContainerStyle={styles.formScrollContainer}>
                             <View style={[styles.pagePadding, styles.innerContainer]}>
                                 <PrimaryInput
                                     label={t("address-title")}
                                     onChangeText={handleChange('adressTitle')}
                                     value={values.adressTitle}
                                 />
-                                <View style={{ paddingVertical: 12, }}>
+                                <View style={{ paddingVertical: Padding.p12, }}>
                                     <SingleSelectDropdown
                                         placeholder={t("province")}
                                         setSelected={handleChange('adressProvince')}
@@ -142,11 +120,23 @@ export default function AddAdress({ navigation }: { navigation: any }) {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: Colors.white
+    },
     innerContainer: {
         flex: 1,
         backgroundColor: Colors.white,
     },
+    formContainer: {
+        flex: 1,
+        paddingTop: Padding.p30
+    },
+    formScrollContainer: {
+        flex: 1,
+        justifyContent: 'space-between'
+    },
     pagePadding: {
-        paddingHorizontal: 20,
+        paddingHorizontal: Padding.p20,
     },
 })
