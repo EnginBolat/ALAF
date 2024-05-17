@@ -19,16 +19,18 @@ const ComponentTitle: React.FC<ComponentTitleProps> = ({
     paddingRight,
     paddingLeft,
 }) => {
-    return <Text style={[
-        styles.title,
-        {
-            padding: padding,
-            paddingTop: paddingTop,
-            paddingBottom: paddingBottom,
-            paddingRight: paddingRight,
-            paddingLeft: paddingLeft,
-        }
-    ]}>{title}</Text>
+    return <Text
+        testID="title"
+        style={[
+            styles.title,
+            {
+                padding: padding,
+                paddingTop: paddingTop,
+                paddingBottom: paddingBottom,
+                paddingRight: paddingRight,
+                paddingLeft: paddingLeft,
+            }
+        ]}>{title}</Text>
 }
 
 export default ComponentTitle;
