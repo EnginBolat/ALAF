@@ -46,6 +46,7 @@ function AdressStack() {
           component={AdressList}
           options={{
             title: t('address-informations'),
+            headerTitleAlign: 'center',
             headerTitleStyle: headerTitleStyle,
             headerBackImage(props) { return headerBackImage() },
             headerStyle: headerStyle('#440E85'),
@@ -56,6 +57,7 @@ function AdressStack() {
           component={AddAdress}
           options={{
             title: t('address-informations'),
+            headerTitleAlign: 'center',
             headerTitleStyle: headerTitleStyle,
             headerLeftLabelVisible: false,
             headerBackImage(props) { return headerBackImage() },
@@ -77,19 +79,21 @@ function RootStack() {
         component={AdressStack}
         options={{
           title: t('my-addresses'),
+          headerTitleAlign: 'center',
           headerTitleStyle: headerStackTitleStyle,
           headerStyle: headerStyle('#220C45'),
           headerRight(props) {
             return <TouchableOpacity
               style={{ paddingRight: 12, }}
-              onPress={() => {
-                if (lng === "en") {
-                  i18n.changeLanguage("tr");
-                } else {
-                  i18n.changeLanguage("en");
-                }
+              onPress={
+                () => {
+                  if (lng === "en") {
+                    i18n.changeLanguage("tr");
+                  } else {
+                    i18n.changeLanguage("en");
+                  }
 
-              }}>
+                }}>
               <Text style={{ color: 'white', fontWeight: "500" }}>{lng.toUpperCase()}</Text>
             </TouchableOpacity>
           },
