@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios, { HttpStatusCode } from "axios";
-import { API_URL } from '.env';
+import { API_URL } from "@env"
 
 export const fetchCities = createAsyncThunk(
     'cities/fetchCities',
     async () => {
         try {
-            const { data, status } = await axios.get(`https://6645cd02b8925626f8933d3a.mockapi.io/cities`)
+            const { data, status } = await axios.get(`${API_URL}/cities`)
             if (status === HttpStatusCode.Ok) {
                 return data;
             }
