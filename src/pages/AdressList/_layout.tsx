@@ -19,35 +19,20 @@ const AdressList: React.FC<AdressListProps> = ({ navigation }) => {
     const { t } = useTranslation();
     const dispatch = useDispatch<AppDispatch>()
 
-    /**
-     * Redux kullanarak global state içerisindeki adres listesini süresince gereken verileri alır 
-    */
     const { addresses, loading, error, } = useSelector((state: RootState) => state.adress);
 
-    /**
-     * Ekrana her focus olunduğunda adresleri çeken metot tekrardan çalışır
-    */
     useFocusEffect(
         useCallback(() => {
             dispatch(adressList());
         }, [dispatch])
     );
 
-    /** 
-     * Adres Ekleme Sayfasına Yönlendirir 
-    */
     const handleAddNewRecordButton = useCallback(() => {
         navigation.navigate('AddAdress');
     }, [navigation]);
 
-    /**
-     * State loading durumundaysa
-    */
     if (loading) { return < Loading /> }
 
-    /**
-     * Listeyi alırken herhangi bir sorunla karşılaşılırsa
-    */
     else if (error) { return <ErrorText error={error} /> } // 
 
     return (
@@ -75,17 +60,11 @@ const AdressList: React.FC<AdressListProps> = ({ navigation }) => {
 }
 
 
-/**
- * Adresleri gösterek olan komponent içerisinde kullanacak veriler
-*/
 interface AddressItemProps {
     address: Adress;
     index: number
 }
 
-/**
- * React.memo kullanılmasının sebebi, address değerinin değişmediği seneryoda yeniden render işlemi yapmaması. Böylelikle uygulamaya performans kazandırması
-*/
 const AddressItem: React.FC<AddressItemProps> = React.memo(({ address, index }) => {
 
     const isDividerRendered = index % 2 == 1;
