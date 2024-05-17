@@ -12,6 +12,7 @@ interface SingleSelectDropdownProps {
 const SingleSelectDropdown: React.FC<SingleSelectDropdownProps> = ({ data, placeholder, setSelected, searchPlaceholder }) => {
     return <SelectList
         placeholder={placeholder}
+        inputStyles={styles.inputStyles}
         setSelected={setSelected}
         searchPlaceholder={searchPlaceholder}
         data={data}
@@ -40,6 +41,12 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.secondaryBackground,
         borderColor: Colors.secondaryBorder,
         borderWidth: 1,
+    },
+    inputStyles: {
+        fontWeight: '500',
+        fontSize: 14,
+        lineHeight: 18,
+        color: Colors.secondaryTitle
     }
 })
 
