@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from "react";
+import React, { useCallback } from "react";
 import { Dimensions, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useFocusEffect } from "@react-navigation/native";
@@ -13,7 +13,6 @@ const { height } = Dimensions.get('window');
 interface AdressListProps {
     navigation: any
 }
-
 
 const AdressList: React.FC<AdressListProps> = ({ navigation }) => {
     const { t } = useTranslation();
