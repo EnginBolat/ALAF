@@ -49,6 +49,7 @@ const PrimaryInput: React.FC<PrimaryInputProps> = ({ label, onChangeText, value 
                 {label}
             </Animated.Text>
             <TextInput
+                testID="primary-input"
                 cursorColor={Colors.secondaryTitle}
                 selectionHandleColor={''}
                 style={[styles.inputText, { height: value.length > 0 ? "auto" : 18 }]}
