@@ -1,6 +1,6 @@
 import React from "react";
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity } from "react-native";
-import { Colors, Padding } from "../../../constants";
+import { Colors, Padding, Radius } from "../../../constants";
 
 type PrimaryButtonProps = {
     onPress: () => void;
@@ -31,13 +31,13 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: Colors.button,
         paddingVertical: Padding.p18,
-        borderRadius: 6,
+        borderRadius: Radius.r6,
         alignItems: 'center',
     },
     disabledContainer: {
         backgroundColor: Colors.primaryBorder,
         paddingVertical: Padding.p18,
-        borderRadius: 6,
+        borderRadius: Radius.r6,
         alignItems: 'center',
     },
     text: {

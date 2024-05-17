@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { IcChevronRight, IcLocation } from "../../../assets";
-import { Colors, Padding } from "../../../constants";
+import { Colors, Padding, Radius } from "../../../constants";
 
 
 type AdressContainerProps = {
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         paddingLeft: Padding.p12,
     },
     iconContainer: {
-        borderRadius: 100,
+        borderRadius: Radius.rounded,
         backgroundColor: Colors.primaryIconBackground,
         height: 40,
         width: 40,

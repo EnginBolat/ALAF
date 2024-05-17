@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Animated, Platform, StyleSheet, Text, TextInput, View } from "react-native";
-import { Colors, Padding } from "../../../constants";
+import { Colors, Padding, Radius } from "../../../constants";
 
 type PrimaryInputProps = {
     label: string;
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.secondaryBackground,
         paddingVertical: Padding.p21,
         paddingHorizontal: Padding.p16,
-        borderRadius: 8,
+        borderRadius: Radius.r8,
     },
     label: {
         fontWeight: '500',

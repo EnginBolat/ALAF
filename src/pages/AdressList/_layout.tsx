@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 import { AdressContainer, BottomButtonLayout, ComponentTitle, Divider, ErrorText, Loading } from "../../components";
 import { AppDispatch, RootState, adressList } from "../../redux";
-import { Colors, Padding } from "../../constants";
+import { Colors, Padding, Radius } from "../../constants";
 import { Adress } from "../../model";
 const { height } = Dimensions.get('window');
 
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
         paddingTop: Padding.p20,
         paddingHorizontal: Padding.p16,
         borderWidth: 1,
-        borderRadius: 8,
+        borderRadius: Radius.r8,
         borderStyle: 'solid',
         borderColor: Colors.primaryBorder,
         marginBottom: 12,
