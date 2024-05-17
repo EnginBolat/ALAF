@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { Dimensions, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -6,6 +6,7 @@ import { AdressContainer, BottomButtonLayout, ComponentTitle, Divider, ErrorText
 import { AppDispatch, RootState, adressList } from "../../redux";
 import { Colors } from "../../constants";
 import { useTranslation } from 'react-i18next';
+import { useFocusEffect } from "@react-navigation/native";
 const { height } = Dimensions.get('window');
 
 
@@ -13,7 +14,13 @@ export default function AdressList({ navigation }) {
     const { t } = useTranslation();
     const { addresses, loading, error, } = useSelector((state: RootState) => state.adress);
     const dispatch = useDispatch<AppDispatch>()
-    useEffect(() => { dispatch(adressList()) }, [])
+
+    // Ekrana her focus olunduğunda adresleri çeken metot tekrardan çalışır.
+    useFocusEffect(
+        useCallback(() => {
+            dispatch(adressList());
+        }, [dispatch])
+    );
 
     if (loading) { return < Loading /> }
     else if (error) { return <ErrorText error={error} /> }
@@ -84,6 +91,6 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         borderStyle: 'solid',
         borderColor: Colors.primaryBorder,
-        maxHeight: height * 0.65,
+        maxHeight: height * 0.60,
     }
 })
