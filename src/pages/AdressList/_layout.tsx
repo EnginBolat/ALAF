@@ -92,6 +92,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.white,
     },
     pagePadding: {
+        flex: 1,
         paddingHorizontal: Padding.p20,
     },
     adressListContainer: {
@@ -101,7 +102,8 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         borderStyle: 'solid',
         borderColor: Colors.primaryBorder,
-        maxHeight: height * 0.60,
+        marginBottom: 12,
+        flex: 1,
     }
 })
 
