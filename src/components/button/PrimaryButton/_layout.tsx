@@ -10,17 +10,18 @@ type PrimaryButtonProps = {
     loading?: boolean;
 };
 
-const PrimaryButton: React.FC<PrimaryButtonProps> = ({ onPress, title, testID, disabled = false, loading = false }) => {
+const PrimaryButton: React.FC<PrimaryButtonProps> = ({ onPress, title, testID, disabled, loading = false }) => {
     return (
-        <TouchableOpacity onPress={onPress} style={disabled ? styles.disabledContainer : styles.container} testID={testID} disabled={disabled}>
+        <TouchableOpacity onPress={disabled ? undefined : onPress} style={[styles.container, disabled && styles.disabledContainer]} testID={"button"} disabled={disabled}>
             <Text
+                testID="title"
                 style={[
                     styles.text,
                     disabled
                         ? { color: '#AAB5C1' }
                         : { color: Colors.white }]}
             >
-                {loading ? <ActivityIndicator /> : title}
+                {loading ? <ActivityIndicator testID="loadingIndicator" /> : title}
             </Text>
         </TouchableOpacity>
     );
