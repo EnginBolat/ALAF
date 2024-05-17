@@ -1,20 +1,25 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import { Dimensions, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
+import { useFocusEffect } from "@react-navigation/native";
+import { useTranslation } from 'react-i18next';
 
 import { AdressContainer, BottomButtonLayout, ComponentTitle, Divider, ErrorText, Loading } from "../../components";
 import { AppDispatch, RootState, adressList } from "../../redux";
 import { Colors } from "../../constants";
-import { useTranslation } from 'react-i18next';
-import { useFocusEffect } from "@react-navigation/native";
 import { Adress } from "../../model";
 const { height } = Dimensions.get('window');
 
+interface AdressListProps {
+    navigation: any
+}
 
-export default function AdressList({ navigation }) {
+
+const AdressList: React.FC<AdressListProps> = ({ navigation }) => {
     const { t } = useTranslation();
-    const { addresses, loading, error, } = useSelector((state: RootState) => state.adress);
     const dispatch = useDispatch<AppDispatch>()
+
+    const { addresses, loading, error, } = useSelector((state: RootState) => state.adress);
 
     // Ekrana her focus olunduğunda adresleri çeken metot tekrardan çalışır.
     useFocusEffect(
@@ -108,3 +113,5 @@ const styles = StyleSheet.create({
         maxHeight: height * 0.60,
     }
 })
+
+export default AdressList;
