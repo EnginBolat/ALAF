@@ -7,7 +7,7 @@ import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet
 import { useDispatch, useSelector } from "react-redux";
 import { SelectList } from "react-native-dropdown-select-list";
 
-import { BottomButtonLayout, ErrorText, Loading, PrimaryInput, PrimarySheet } from "../../components";
+import { BottomButtonLayout, ErrorText, Loading, PrimaryInput, PrimarySheet, SingleSelectDropdown } from "../../components";
 import { addAdress, AppDispatch, fetchCities, RootState } from "../../redux";
 import { Adress } from "../../model";
 import { Colors } from "../../constants";
@@ -107,30 +107,11 @@ export default function AddAdress({ navigation }: { navigation: any }) {
                                     value={values.adressTitle}
                                 />
                                 <View style={{ paddingVertical: 12, }}>
-                                    <SelectList
+                                    <SingleSelectDropdown
                                         placeholder={t("province")}
                                         setSelected={handleChange('adressProvince')}
                                         searchPlaceholder={t("search")}
                                         data={citiesMemoArray!}
-                                        searchicon={null!}
-                                        boxStyles={{
-                                            alignItems: 'center',
-                                            borderWidth: 1,
-                                            borderStyle: 'solid',
-                                            borderColor: Colors.secondaryBorder,
-                                            backgroundColor: Colors.secondaryBackground,
-                                            paddingVertical: 24,
-                                            paddingHorizontal: 16,
-                                            borderRadius: 8,
-                                        }}
-                                        dropdownTextStyles={{
-                                            paddingVertical: 12
-                                        }}
-                                        dropdownStyles={{
-                                            backgroundColor: Colors.secondaryBackground,
-                                            borderColor: Colors.secondaryBorder,
-                                            borderWidth: 1,
-                                        }}
                                     />
                                 </View>
                                 <PrimaryInput
