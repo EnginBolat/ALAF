@@ -32,9 +32,10 @@ const BottomButtonLayout: React.FC<BottomButtonLayoutProps> = ({
 const styles = StyleSheet.create({
     pagePadding: {
         paddingHorizontal: 20,
+        marginBottom: 16
     },
     buttonStyle: {
-        paddingTop: 15,
+        paddingTop: 16,
     },
 })
 
