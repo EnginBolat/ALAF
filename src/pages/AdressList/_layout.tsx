@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { memo, useCallback } from "react";
 import { Dimensions, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useFocusEffect } from "@react-navigation/native";
@@ -19,22 +19,36 @@ const AdressList: React.FC<AdressListProps> = ({ navigation }) => {
     const { t } = useTranslation();
     const dispatch = useDispatch<AppDispatch>()
 
+    /**
+     * Redux kullanarak global state içerisindeki adres listesini süresince gereken verileri alır 
+    */
     const { addresses, loading, error, } = useSelector((state: RootState) => state.adress);
 
-    // Ekrana her focus olunduğunda adresleri çeken metot tekrardan çalışır.
+    /**
+     * Ekrana her focus olunduğunda adresleri çeken metot tekrardan çalışır
+    */
     useFocusEffect(
         useCallback(() => {
             dispatch(adressList());
         }, [dispatch])
     );
 
-    if (loading) { return < Loading /> } // State loading durumundaysa
-    else if (error) { return <ErrorText error={error} /> } // Listeyi alırken herhangi bir sorunla karşılaşılırsa
-
-    // Adres Ekleme Sayfasına Yönlendirir
+    /** 
+     * Adres Ekleme Sayfasına Yönlendirir 
+    */
     const handleAddNewRecordButton = useCallback(() => {
         navigation.navigate('AddAdress');
     }, [navigation]);
+
+    /**
+     * State loading durumundaysa
+    */
+    if (loading) { return < Loading /> }
+
+    /**
+     * Listeyi alırken herhangi bir sorunla karşılaşılırsa
+    */
+    else if (error) { return <ErrorText error={error} /> } // 
 
     return (
         <SafeAreaView style={styles.container}>
@@ -43,7 +57,6 @@ const AdressList: React.FC<AdressListProps> = ({ navigation }) => {
                     {/* Title */}
                     <ComponentTitle title={t('registered-addresses')} paddingTop={height * 0.04} />
                     <View style={{ height: 10 }} />
-                    {/* Information Container */}
                     <View style={styles.adressListContainer}>
                         <ScrollView showsVerticalScrollIndicator={false}>
                             {addresses?.map((adress) => {
@@ -61,34 +74,33 @@ const AdressList: React.FC<AdressListProps> = ({ navigation }) => {
     )
 }
 
-interface AdressItemProps {
+
+/**
+ * Adresleri gösterek olan komponent içerisinde kullanacak veriler
+*/
+interface AddressItemProps {
     address: Adress;
 }
 
-const AddressItem: React.FC<AdressItemProps> = ({ address }) => {
-    return <View>
-        (Number(address.id) % 2 == 0)
-        ? <View key={address.id}>
-            <Divider />
-            <AdressContainer
-                key={address.id}
-                adressTitle={address.adressTitle}
-                adressDetails={address.adressDescription}
-                currentAdress={address.currentAdress}
-                onPress={() => { }}
-            />
-            <Divider />
-        </View>
-        : <AdressContainer
+/**
+ * React.memo kullanılmasının sebebi, address değerinin değişmediği seneryoda yeniden render işlemi yapmaması. Böylelikle uygulamaya performans kazandırması
+*/
+const AddressItem: React.FC<AddressItemProps> = React.memo(({ address }) => {
+
+    const isDividerRendered = Number(address.id) % 2 == 0;
+
+    return <View key={address.id}>
+        {isDividerRendered && <Divider />}
+        <AdressContainer
             key={address.id}
             adressTitle={address.adressTitle}
             adressDetails={address.adressDescription}
             currentAdress={address.currentAdress}
             onPress={() => { }}
         />
+        {isDividerRendered && <Divider />}
     </View>
-}
-
+});
 
 const styles = StyleSheet.create({
     container: {
