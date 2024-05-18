@@ -47,7 +47,7 @@ const PrimarySheet: React.FC<PrimarySheetProps> = ({
 
 const styles = StyleSheet.create({
     bsBackground: {
-        backgroundColor: Colors.white,
+        backgroundColor: "#1811404D",
     },
     bsIndicator: {
         backgroundColor: Colors.primaryBorder,
