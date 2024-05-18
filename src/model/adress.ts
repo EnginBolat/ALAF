@@ -4,4 +4,5 @@ export interface Adress {
   city: string
   adressDescription: string
   currentAdress: string
+  isDeleted?: boolean;
 }
