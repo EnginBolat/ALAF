@@ -1,3 +1,19 @@
+# About
+
+This project is a mobile application with functionality to add, list and delete addresses. The application is developed using React Native and utilizes technologies such as Redux-Toolkit, Thunk, Typescript, React Navigation, Jest tests, and Multi-language support.
+
+Features
+
+- Add address (http://mockapi.io/)
+- Address listing (http://mockapi.io/)
+- Address deletion (http://mockapi.io/)
+- Multi-language support
+- Responsive design using flex
+- Bottom sheet integration
+- Component Tests using jest
+
+
+
 ## Prerequisites
 
 - npm  >= 10.2.4
