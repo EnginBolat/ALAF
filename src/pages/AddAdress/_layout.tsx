@@ -129,7 +129,6 @@ const styles = StyleSheet.create({
         paddingTop: Padding.p30
     },
     formScrollContainer: {
-        flex: 1,
         justifyContent: 'space-between'
     },
     pagePadding: {
