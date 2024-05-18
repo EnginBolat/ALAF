@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import { BaseView, BottomButtonLayout, ErrorText, Loading, PrimaryInput, PrimarySheet, SingleSelectDropdown } from "../../components";
 import { addAdress, AppDispatch, fetchCities, RootState } from "../../redux";
 import { Adress } from "../../model";
-import { Colors, Padding } from "../../constants";
+import { Colors, Padding, Translation } from "../../constants";
 
 
 export default function AddAdress({ navigation }: { navigation: any }) {
@@ -79,27 +79,27 @@ export default function AddAdress({ navigation }: { navigation: any }) {
                         <ScrollView contentContainerStyle={styles.formScrollContainer}>
                             <View style={styles.innerContainer}>
                                 <PrimaryInput
-                                    label={t("address-title")}
+                                    label={t(Translation.addressTitle)}
                                     onChangeText={handleChange('adressTitle')}
                                     value={values.adressTitle}
                                 />
                                 <View style={{ paddingVertical: Padding.p12, }}>
                                     <SingleSelectDropdown
-                                        placeholder={t("province")}
+                                        placeholder={t(Translation.province)}
                                         setSelected={handleChange('adressProvince')}
-                                        searchPlaceholder={t("search")}
+                                        searchPlaceholder={t(Translation.search)}
                                         data={citiesMemoArray!}
                                     />
                                 </View>
                                 <PrimaryInput
-                                    label={t("address-detail")}
+                                    label={t(Translation.addressDetail)}
                                     onChangeText={handleChange('adressDescription')}
                                     value={values.adressDescription}
                                 />
                             </View>
                         </ScrollView>
                         <BottomButtonLayout
-                            title={t('save')}
+                            title={t(Translation.save)}
                             onPress={handleSubmit}
                             disabled={values.adressProvince.length > 1 && values.adressDescription.length > 1 && values.adressTitle.length > 1 ? false : true}
                             loading={addressLoading}

@@ -10,5 +10,7 @@
     "address-saved": "Address saved successfully!",
     "save": "Save",
     "address-informations": "Your Address Information",
-    "my-addresses": "My Addresses"
+    "my-addresses": "My Addresses",
+    "no-adress-found": "No Address Founded",
+    "server-error": "We can't reach our servers please try again later."
 }

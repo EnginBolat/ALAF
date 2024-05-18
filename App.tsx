@@ -10,6 +10,7 @@ import { IcChevronLeft } from "./src/assets";
 import { Provider } from "react-redux";
 import { store } from "./src/redux";
 import { useTranslation } from "react-i18next";
+import { Translation } from "./src/constants";
 
 
 type RootStackParamList = {
@@ -44,28 +45,18 @@ function AdressStack() {
           headerTitleStyle: headerTitleStyle,
           headerBackImage(props) { return headerBackImage() },
           headerStyle: { backgroundColor: '#440E85' },
-          // header: (props) => (
-          // <LinearGradient colors={["#220C45", "#220C45"]}>
-          //   <Header {...props} />
-          // </LinearGradient >
-          // ),
         }}
       />
       <Stack.Screen
         name="AddAdress"
         component={AddAdress}
         options={{
-          title: t('address-informations'),
+          title: t(Translation.addressInformation),
           headerTitleAlign: 'center',
           headerTitleStyle: headerTitleStyle,
           headerLeftLabelVisible: false,
           headerBackImage(props) { return headerBackImage() },
           headerStyle: { backgroundColor: '#440E85' },
-          // header: (props) => (
-          //   <LinearGradient colors={["#220C45", "#220C45"]}>
-          //     <Header {...props} />
-          //   </LinearGradient >
-          // ),
         }}
       />
     </Stack.Navigator>
@@ -81,7 +72,7 @@ function RootStack() {
         name="AdressStack"
         component={AdressStack}
         options={{
-          title: t('my-addresses'),
+          title: t(Translation.myAdressses),
           header(props) {
             return <LinearGradient colors={["#220C45", "#440E85"]}>
               <Header {...props} />

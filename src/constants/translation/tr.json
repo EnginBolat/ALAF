@@ -10,5 +10,7 @@
     "address-saved": "Adresin başarıyla kaydedildi!",
     "save": "Kaydet",
     "address-informations": "Adres Bilgilerim",
-    "my-addresses": "Adreslerim"
+    "my-addresses": "Adreslerim",
+    "no-adress-found": "Kayılı adres bulunamadı",
+    "server-error": "Şu anda sunucularımıza ulaşamıyoruz. Lütfen daha sonra tekrar deneyin"
 }

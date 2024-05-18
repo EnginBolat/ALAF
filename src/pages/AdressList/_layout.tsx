@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 import { AdressContainer, BaseView, BottomButtonLayout, ComponentTitle, Divider, ErrorText, Loading, Swipable } from "../../components";
 import { AppDispatch, RootState, adressList, deleteAdress } from "../../redux";
-import { Colors, Padding, Radius } from "../../constants";
+import { Colors, Padding, Radius, Translation } from "../../constants";
 import { Adress } from "../../model";
 const { height } = Dimensions.get('window');
 
@@ -37,11 +37,11 @@ const AdressList: React.FC<AdressListProps> = ({ navigation }) => {
     return (
         <BaseView>
             {(addresses?.length ?? 0) < 1
-                ? <ErrorText error="Kayılı Adres Bulunamadı" />
+                ? <ErrorText error={t(Translation.noAddressFound)} />
                 : <View style={styles.innerContainer}>
                     <View style={styles.pagePadding}>
                         {/* Title */}
-                        <ComponentTitle title={t('registered-addresses')} paddingTop={height * 0.04} />
+                        <ComponentTitle title={t(Translation.registeredAddresses)} paddingTop={height * 0.04} />
                         <View style={{ height: 10 }} />
                         <View style={styles.adressListContainer}>
                             <ScrollView showsVerticalScrollIndicator={false}>
@@ -59,7 +59,7 @@ const AdressList: React.FC<AdressListProps> = ({ navigation }) => {
                 </View>
             }
             <BottomButtonLayout
-                title={t('add-new-record')}
+                title={t(Translation.addNewRecord)}
                 onPress={handleAddNewRecordButton}
             />
         </BaseView>
