@@ -1,10 +1,10 @@
 import React, { useCallback } from "react";
-import { Dimensions, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
+import { Dimensions, ScrollView, StyleSheet, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useFocusEffect } from "@react-navigation/native";
 import { useTranslation } from 'react-i18next';
 
-import { AdressContainer, BottomButtonLayout, ComponentTitle, Divider, ErrorText, Loading } from "../../components";
+import { AdressContainer, BaseView, BottomButtonLayout, ComponentTitle, Divider, ErrorText, Loading } from "../../components";
 import { AppDispatch, RootState, adressList } from "../../redux";
 import { Colors, Padding, Radius } from "../../constants";
 import { Adress } from "../../model";
@@ -35,7 +35,7 @@ const AdressList: React.FC<AdressListProps> = ({ navigation }) => {
     else if (error) { return <ErrorText error={error} /> } // 
 
     return (
-        <SafeAreaView style={styles.container}>
+        <BaseView>
             <View style={styles.innerContainer}>
                 <View style={styles.pagePadding}>
                     {/* Title */}
@@ -54,7 +54,7 @@ const AdressList: React.FC<AdressListProps> = ({ navigation }) => {
                 title={t('add-new-record')}
                 onPress={handleAddNewRecordButton}
             />
-        </SafeAreaView >
+        </BaseView>
     )
 }
 
