@@ -22,6 +22,7 @@ Features
 ## Install
 ```sh
 npm install
+cd ios && pod install && cd..
 ```
 
 ## Usage
