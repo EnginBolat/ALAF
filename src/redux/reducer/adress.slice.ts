@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { addAdress, adressList, fetchCities } from '../actions';
+import { addAdress, adressList, deleteAdress, fetchCities } from '../actions';
 import { Adress } from '../../model';
 
 interface AdressState {
@@ -36,6 +36,15 @@ export const adressSlice = createSlice({
                 return { ...state, loading: false }
             })
             .addCase(addAdress.rejected, (state, action) => {
+                return { ...state, loading: false, error: `${action.error.message}` }
+            })
+            .addCase(deleteAdress.pending, (state, action) => {
+                return { ...state, loading: true }
+            })
+            .addCase(deleteAdress.fulfilled, (state, action) => {
+                return { ...state, loading: false }
+            })
+            .addCase(deleteAdress.rejected, (state, action) => {
                 return { ...state, loading: false, error: `${action.error.message}` }
             })
     }
