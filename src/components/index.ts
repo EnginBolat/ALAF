@@ -7,3 +7,4 @@ export * from './layout';
 export * from './loading';
 export * from './text';
 export * from './dropdown';
+export * from './swipable';

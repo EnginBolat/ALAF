@@ -1,0 +1,1 @@
+export { default as Swipable } from './_layout';
