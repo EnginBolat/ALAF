@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef } from "react";
-import { SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 import * as yup from 'yup';
 import { Formik } from "formik";
@@ -7,7 +7,7 @@ import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-import { BottomButtonLayout, ErrorText, Loading, PrimaryInput, PrimarySheet, SingleSelectDropdown } from "../../components";
+import { BaseView, BottomButtonLayout, ErrorText, Loading, PrimaryInput, PrimarySheet, SingleSelectDropdown } from "../../components";
 import { addAdress, AppDispatch, fetchCities, RootState } from "../../redux";
 import { Adress } from "../../model";
 import { Colors, Padding } from "../../constants";
@@ -56,7 +56,7 @@ export default function AddAdress({ navigation }: { navigation: any }) {
     else if (error || addressError) { return <ErrorText error={error} /> }
 
     return <BottomSheetModalProvider>
-        <SafeAreaView style={styles.container}>
+        <BaseView>
             <Formik
                 initialValues={{
                     adressTitle: '',
@@ -115,15 +115,11 @@ export default function AddAdress({ navigation }: { navigation: any }) {
                 snapPoints={snapPoints}
                 handleSheetChanges={handleSheetChanges}
             />
-        </SafeAreaView>
+        </BaseView>
     </BottomSheetModalProvider>
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: Colors.white
-    },
     innerContainer: {
         flex: 1,
         backgroundColor: Colors.white,
