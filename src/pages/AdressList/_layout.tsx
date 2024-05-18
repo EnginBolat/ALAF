@@ -81,10 +81,6 @@ const AddressItem: React.FC<AddressItemProps> = React.memo(({ address, index }) 
     </View>
 });
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: Colors.white,
-    },
     innerContainer: {
         flex: 1,
         justifyContent: 'space-between',
