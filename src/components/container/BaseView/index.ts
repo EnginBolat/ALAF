@@ -1,0 +1,1 @@
+export { default as BaseView } from './_layout';
