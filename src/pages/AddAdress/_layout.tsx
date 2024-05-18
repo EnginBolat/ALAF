@@ -77,7 +77,7 @@ export default function AddAdress({ navigation }: { navigation: any }) {
                 {({ handleChange, handleSubmit, values, }) => (
                     <View style={styles.formContainer}>
                         <ScrollView contentContainerStyle={styles.formScrollContainer}>
-                            <View style={[styles.pagePadding, styles.innerContainer]}>
+                            <View style={styles.innerContainer}>
                                 <PrimaryInput
                                     label={t("address-title")}
                                     onChangeText={handleChange('adressTitle')}
@@ -123,6 +123,7 @@ const styles = StyleSheet.create({
     innerContainer: {
         flex: 1,
         backgroundColor: Colors.white,
+        paddingHorizontal: Padding.p20,
     },
     formContainer: {
         flex: 1,
@@ -130,8 +131,5 @@ const styles = StyleSheet.create({
     },
     formScrollContainer: {
         justifyContent: 'space-between'
-    },
-    pagePadding: {
-        paddingHorizontal: Padding.p20,
     },
 })
